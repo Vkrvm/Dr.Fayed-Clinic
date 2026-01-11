@@ -1,3 +1,21 @@
-// Custom overrides
-$primary: #0d6efd; // Bootstrap default blue, placeholder
+// 1. User Palette
+$color-primary: #272727; // --e-global-color-primary
+$color-secondary: #457D9A; // --e-global-color-secondary
+$color-text: #5F5F5F; // --e-global-color-text
+$color-accent: #9D5A47; // --e-global-color-accent
+
+$color-dark-overlay: #0D343521; // --e-global-color-47bf664
+$color-light-blue: #B6E7EF; // --e-global-color-0c563af
+$color-gray-100: #F2F2F2; // --e-global-color-77abc59
+$color-gray-200: #E9E9E9; // --e-global-color-e52db21
+$color-transparent: #19030300; // --e-global-color-7ea05fd
+
+// 2. Bootstrap Overrides
+$primary: $color-primary;
+$secondary: $color-secondary;
+$body-color: $color-text;
+$light: $color-gray-100;
+$info: $color-light-blue;
+
+// 3. Configuration
 $enable-cssgrid: true;
