@@ -2,5 +2,35 @@
     "HomePage": {
         "title": "عيادة فايد",
         "welcome": "مرحباً بكم في عيادة فايد"
+    },
+    "Navigation": {
+        "home": "الرئيسية",
+        "about": "من نحن",
+        "services": "خدماتنا",
+        "pages": "الصفحات",
+        "contact": "تواصل معنا",
+        "appointment": "احجز موعداً"
+    },
+    "TopBar": {
+        "callUs": "اتصل بنا"
+    },
+    "Footer": {
+        "description": "توفير رعاية طبية عالية الجودة مع فريق متخصص من المحترفين.",
+        "quickLinks": "روابط سريعة",
+        "socials": "تواصل معنا",
+        "services": "خدماتنا",
+        "contactInfo": "معلومات الاتصال",
+        "copyright": "حقوق النشر © {year} عيادة فايد. جميع الحقوق محفوظة.",
+        "socialNetworks": {
+            "facebook": "فيسبوك",
+            "whatsapp": "واتساب",
+            "instagram": "إنستغرام"
+        },
+        "serviceList": {
+            "chiropractic": "تقويم العمود الفقري",
+            "physiotherapy": "جلسات العلاج الطبيعي",
+            "posture": "تصحيح القوام",
+            "massage": "العلاج بالتدليك"
+        }
     }
 }

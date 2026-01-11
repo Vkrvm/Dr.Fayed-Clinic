@@ -1,0 +1,144 @@
+@use "../../styles/variables" as *;
+
+.header {
+    background-color: white;
+    // sticky-top behavior is handled by bootstrap class usually, or we can add it here
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+}
+
+.logoLink {
+    text-decoration: none;
+    // Bootstrap navbar-brand has margin-right: 1rem by default.
+    // In RTL, this becomes spacing on the 'inner' side if not flipped, or weird spacing.
+    // User requested margin 0 in Arabic.
+    // logical property reset:
+    margin-inline-end: 0 !important;
+
+    :global([dir="rtl"]) & {
+        margin: 0 !important;
+    }
+}
+
+.logo {
+    width: auto;
+    height: 70px; // Default desktop height
+    object-fit: contain;
+
+    // Mobile media query
+    @media (max-width: 991.98px) {
+        height: 50px; // Smaller height for mobile
+    }
+}
+
+.navLink {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: $color-primary;
+    transition: color 0.2s ease;
+
+    &:hover,
+    :global(.active) {
+        color: $color-secondary !important;
+    }
+}
+
+.actionsContainer {
+    // Replaces ms-4.
+    // We want spacing from the nav items.
+    // LTR -> Spacing on Left (Start).
+    // RTL -> Spacing on Right (Start).
+    margin-inline-start: 1.5rem; // Logic property for "ms-4"
+
+    // User said "in arabic must be me-4" (which implies margin-left in RTL if interpreted strictly as class, OR margin-right if interpreted as position).
+    // If we rely on logical `margin-inline-start`, it puts margin on Right in RTL.
+    // The user's complaint "ms-4" (margin-left) staying margin-left in RTL is the bug.
+    // So margin-inline-start fixes it.
+}
+
+.mobileMenu {
+    background-color: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+    // Fix for RTL padding issue (Bootstrap SCSS defaults usually miss logical props)
+    :global(.navbar-nav) {
+        padding-inline-start: 0;
+    }
+}
+
+.languageBtn {
+    min-width: 45px;
+    font-weight: bold;
+    color: $color-primary;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0;
+    border: none;
+    background: none;
+
+    &:hover {
+        color: $color-secondary;
+    }
+}
+
+.appointmentBtn {
+    background-color: #457D9A; // Explicitly using requested secondary color
+    border-radius: 10px;
+    padding-block: 17px;
+    padding-inline: 30px;
+    color: white;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    display: flex; // Added for alignment
+    align-items: center; // Added for alignment
+    justify-content: center; // Added for alignment
+    gap: 0.5rem; // Use gap instead of margins
+
+    // RTL: Reverse direction as requested
+    :global([dir="rtl"]) & {
+        flex-direction: row-reverse;
+    }
+
+    &:hover {
+        background-color: color-mix(in srgb, #457D9A, black 10%);
+        color: white;
+        transform: translateY(-2px);
+    }
+}
+
+.menuToggle {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-shadow: none !important;
+    background: transparent;
+    z-index: 1030; // Ensure it's above other things
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Explicitly visible on mobile, hidden on desktop
+    display: flex;
+
+    @media (min-width: 992px) {
+        display: none;
+    }
+
+    :global(svg) {
+        width: 24px;
+        height: 24px;
+
+        path {
+            stroke: $color-primary; // Use SCSS variable
+            stroke-width: 3px;
+        }
+    }
+}

@@ -1,0 +1,95 @@
+@use "../../styles/variables" as *;
+
+.footer {
+    background-color: transparent;
+    // LTR Gradient
+    background-image: linear-gradient(90deg, #457D9A 0%, rgba(69, 125, 154, 0.82) 80%);
+
+    :global([dir="rtl"]) & {
+        // RTL Gradient (flipped)
+        background-image: linear-gradient(270deg, #457D9A 0%, rgba(69, 125, 154, 0.82) 80%);
+    }
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    width: auto;
+    height: 70px;
+}
+
+.description {
+    font-size: 0.875rem;
+    opacity: 0.75;
+    margin-bottom: 1.5rem;
+}
+
+.contactLink {
+    color: $color-gray-100 !important; // Force light color
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.heading {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.linkList {
+    color: $color-gray-100 !important; // Force light color
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    opacity: 0.75;
+}
+
+.linkItem {
+    color: $color-gray-100 !important; // Force light color
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+        text-decoration: underline;
+        opacity: 1;
+        // Logic: move "forward"
+        transform: translateX(3px);
+
+        :global([dir="rtl"]) & {
+            transform: translateX(-3px);
+        }
+    }
+}
+
+.copyright {
+    font-size: 0.875rem;
+    opacity: 0.75;
+    margin-bottom: 0;
+}
+
+.divider {
+    opacity: 0.25;
+    margin: 1.5rem 0;
+    border-color: white;
+}

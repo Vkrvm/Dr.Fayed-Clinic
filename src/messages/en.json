@@ -2,5 +2,35 @@
     "HomePage": {
         "title": "Fayed Clinic",
         "welcome": "Welcome to Fayed Clinic"
+    },
+    "Navigation": {
+        "home": "Home",
+        "about": "About",
+        "services": "Services",
+        "pages": "Pages",
+        "contact": "Contact",
+        "appointment": "Make an Appointment"
+    },
+    "TopBar": {
+        "callUs": "Call Us"
+    },
+    "Footer": {
+        "description": "Providing top-quality medical care with a dedicated team of professionals.",
+        "quickLinks": "Quick Links",
+        "socials": "Socials",
+        "services": "Our Services",
+        "contactInfo": "Contact Info",
+        "copyright": "Copyright © {year} Fayed Clinic. All rights reserved.",
+        "socialNetworks": {
+            "facebook": "Facebook",
+            "whatsapp": "WhatsApp",
+            "instagram": "Instagram"
+        },
+        "serviceList": {
+            "chiropractic": "Chiropractic Adjustments",
+            "physiotherapy": "Physiotherapy Sessions",
+            "posture": "Posture Correction",
+            "massage": "Massage Therapy"
+        }
     }
 }
