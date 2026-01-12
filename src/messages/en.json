@@ -59,5 +59,14 @@
         "visionText": "To be a leading provider of innovative and patient-centered physiotherapy and rehabilitation.",
         "learnMore": "Learn More",
         "callUsAnytime": "Call Us Anytime"
+    },
+    "Services": {
+        "subtitle": "OUR SERVICES",
+        "heading": "Move Freely, Live Fully with Our Care",
+        "learnMore": "Learn More",
+        "discoverFullRange": "Discover our full range of services",
+        "viewAllServices": "View All Services",
+        "whatWeOffer": "WHAT WE OFFER",
+        "pageHeading": "Comprehensive Care For Your Body"
     }
 }

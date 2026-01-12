@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/routing';
 import { Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import styles from './About.module.scss';

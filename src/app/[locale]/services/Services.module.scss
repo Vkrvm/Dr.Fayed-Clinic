@@ -1,0 +1,48 @@
+@use "../../../styles/variables" as *;
+
+.servicesPage {
+    padding-top: 120px; // Space for fixed header
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    margin-block: 100px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.subtitle {
+    display: inline-block;
+    color: $color-accent;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $color-primary;
+    margin: 0;
+
+    @media (max-width: 768px) {
+        font-size: 2rem;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @media (max-width: 992px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 576px) {
+        grid-template-columns: 1fr;
+    }
+}

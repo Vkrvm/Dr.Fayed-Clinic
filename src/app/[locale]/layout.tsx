@@ -30,6 +30,8 @@ export const metadata = {
 import GlobalTransition from "@/components/layout/GlobalTransition";
 
 import Footer from "@/components/layout/Footer";
+import AuthProvider from "@/components/auth/AuthProvider";
+import ConditionalLayout from "@/components/layout/ConditionalLayout";
 
 export default async function LocaleLayout({
   children,
@@ -52,16 +54,13 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body className={`${montserrat.variable} ${outfit.variable}`}>
-        <NextIntlClientProvider messages={messages}>
-          <GlobalTransition locale={locale}>
-            <NavbarTop />
-            <Header />
-            <main className="flex-grow-1">
+        <AuthProvider>
+          <NextIntlClientProvider messages={messages}>
+            <ConditionalLayout locale={locale}>
               {children}
-            </main>
-            <Footer />
-          </GlobalTransition>
-        </NextIntlClientProvider>
+            </ConditionalLayout>
+          </NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   );

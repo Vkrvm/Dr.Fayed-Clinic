@@ -1,0 +1,153 @@
+@use "../../styles/variables" as *;
+
+.form {
+    margin-top: 1.5rem;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.section {
+    margin-bottom: 2rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.sectionTitle {
+    font-size: 1.25rem;
+    color: $color-primary;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.flag {
+    font-size: 1.5rem;
+}
+
+.divider {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 2.5rem 0;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.label {
+    display: block;
+    font-weight: 600;
+    color: $color-primary;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.required {
+    color: #c33;
+}
+
+.input,
+.textarea,
+.select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+
+    &:focus {
+        outline: none;
+        border-color: $color-accent;
+        box-shadow: 0 0 0 3px rgba($color-accent, 0.1);
+    }
+
+    &::placeholder {
+        color: #999;
+    }
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #f0f0f0;
+}
+
+.submitBtn,
+.cancelBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+.submitBtn {
+    background: $color-accent;
+    color: white;
+
+    &:hover:not(:disabled) {
+        background: darken($color-accent, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba($color-accent, 0.3);
+    }
+}
+
+.cancelBtn {
+    background: #f8f9fa;
+    color: $color-text;
+
+    &:hover:not(:disabled) {
+        background: #e5e7eb;
+    }
+}
+
+.imagePreview {
+    margin-top: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 300px;
+    border: 2px solid #e5e7eb;
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}

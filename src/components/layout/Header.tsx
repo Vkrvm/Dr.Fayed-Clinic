@@ -16,6 +16,7 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
+    const isServicesPage = pathname.includes('/services');
 
     const navLinks = [
         { key: 'home', href: '/' },
@@ -31,8 +32,21 @@ export default function Header() {
 
             // Active section logic
             const aboutSection = document.getElementById('about');
-            if (aboutSection) {
-                const aboutOffset = aboutSection.offsetTop - 150; // Offset for header
+            const servicesSection = document.getElementById('services');
+
+            if (servicesSection && aboutSection) {
+                const servicesOffset = servicesSection.offsetTop - 150;
+                const aboutOffset = aboutSection.offsetTop - 150;
+
+                if (scrollPosition >= servicesOffset) {
+                    setActiveSection('services');
+                } else if (scrollPosition >= aboutOffset) {
+                    setActiveSection('about');
+                } else {
+                    setActiveSection('home');
+                }
+            } else if (aboutSection) {
+                const aboutOffset = aboutSection.offsetTop - 150;
                 if (scrollPosition >= aboutOffset) {
                     setActiveSection('about');
                 } else {
@@ -49,7 +63,9 @@ export default function Header() {
     }, []);
 
     return (
-        <header className={`${styles.header} ${isScrolled ? styles.scrolled : styles.transparent} ${isOpen ? styles.open : ''}`}>
+        <header
+            className={`${styles.header} ${isScrolled ? styles.scrolled : styles.transparent} ${isOpen ? styles.open : ''} ${isServicesPage ? styles.servicesPage : ''}`}
+        >
             <nav className="navbar navbar-expand-lg navbar-light py-3">
                 <div className="container">
                     <Link href="/" className={`navbar-brand d-flex align-items-center gap-2 ${styles.logoLink}`} onClick={() => setIsOpen(false)}>
@@ -107,34 +123,50 @@ export default function Header() {
 
                     <div className="collapse navbar-collapse justify-content-end d-none d-lg-flex">
                         <ul className="navbar-nav align-items-center gap-4 mb-0">
-                            {navLinks.map((link) => (
-                                <li className="nav-item" key={link.key}>
-                                    <Link
-                                        href={link.key === 'about' ? '/#' : (link.href as any)}
-                                        className={`nav-link ${styles.navLink} ${activeSection === link.key ? styles.activeLink : ''}`}
-                                        onClick={(e) => {
-                                            if (link.key === 'home') {
-                                                e.preventDefault();
-                                                if (pathname === '/') {
-                                                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                                                } else {
-                                                    router.push('/');
+                            {navLinks.map((link) => {
+                                // Determine if this link should be active
+                                const isActive = isServicesPage
+                                    ? link.key === 'services'  // On services page, only services is active
+                                    : activeSection === link.key;  // On homepage, use scroll-based active
+
+                                return (
+                                    <li className="nav-item" key={link.key}>
+                                        <Link
+                                            href={link.key === 'about' || link.key === 'services' ? '/#' : (link.href as any)}
+                                            className={`nav-link ${styles.navLink} ${isActive ? styles.activeLink : ''}`}
+                                            onClick={(e) => {
+                                                if (link.key === 'home') {
+                                                    e.preventDefault();
+                                                    if (pathname === '/') {
+                                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                                    } else {
+                                                        router.push('/');
+                                                    }
+                                                } else if (link.key === 'about') {
+                                                    e.preventDefault();
+                                                    const aboutSection = document.getElementById('about');
+                                                    if (aboutSection) {
+                                                        aboutSection.scrollIntoView({ behavior: 'smooth' });
+                                                    } else {
+                                                        router.push('/?target=about');
+                                                    }
+                                                } else if (link.key === 'services') {
+                                                    e.preventDefault();
+                                                    setActiveSection('services'); // Set active immediately
+                                                    const servicesSection = document.getElementById('services');
+                                                    if (servicesSection) {
+                                                        servicesSection.scrollIntoView({ behavior: 'smooth' });
+                                                    } else {
+                                                        router.push('/?target=services');
+                                                    }
                                                 }
-                                            } else if (link.key === 'about') {
-                                                e.preventDefault();
-                                                const aboutSection = document.getElementById('about');
-                                                if (aboutSection) {
-                                                    aboutSection.scrollIntoView({ behavior: 'smooth' });
-                                                } else {
-                                                    router.push('/?target=about');
-                                                }
-                                            }
-                                        }}
-                                    >
-                                        {t(link.key)}
-                                    </Link>
-                                </li>
-                            ))}
+                                            }}
+                                        >
+                                            {t(link.key)}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
                         </ul>
 
                         <div className={`d-flex align-items-center gap-3 ${styles.actionsContainer}`}>

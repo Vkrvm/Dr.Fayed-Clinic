@@ -15,6 +15,27 @@
     @media (max-width: 767.98px) {
         display: none;
     }
+
+    &.servicesPage {
+        background-color: #f2f2f2 !important;
+        border-bottom-color: rgba(0, 0, 0, 0.1);
+
+        .contactInfo {
+            color: #000;
+
+            svg {
+                color: $color-accent;
+            }
+        }
+
+        .socialIcons a {
+            color: #000;
+
+            &:hover {
+                color: $color-accent;
+            }
+        }
+    }
 }
 
 .content {

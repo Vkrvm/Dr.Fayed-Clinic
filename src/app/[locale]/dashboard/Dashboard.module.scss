@@ -1,0 +1,17 @@
+@use "../../../styles/variables" as *;
+
+.dashboardContainer {
+    min-height: 100vh;
+    background-color: #f5f7fa;
+}
+
+.main {
+    margin-left: 260px;
+    padding: 2rem;
+    min-height: 100vh;
+
+    @media (max-width: 768px) {
+        margin-left: 0;
+        padding: 1rem;
+    }
+}

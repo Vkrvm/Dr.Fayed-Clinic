@@ -67,6 +67,28 @@
             }
         }
     }
+
+    &.servicesPage {
+        background-color: #f2f2f2 !important;
+        box-shadow: none;
+
+        .navLink {
+            color: #000 !important;
+
+            &:hover,
+            &.activeLink {
+                color: $color-accent !important;
+            }
+        }
+
+        .languageBtn {
+            color: #000 !important;
+        }
+
+        .menuToggle :global(svg path) {
+            stroke: #000 !important;
+        }
+    }
 }
 
 .logoLink {

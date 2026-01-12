@@ -1,14 +1,19 @@
+'use client';
+
 import { Phone, Facebook, Instagram } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import styles from './NavbarTop.module.scss';
 
 export default function NavbarTop() {
     const t = useTranslations('TopBar');
+    const pathname = usePathname();
+    const isServicesPage = pathname.includes('/services');
 
     return (
-        <div className={styles.navbarTop}>
+        <div className={`${styles.navbarTop} ${isServicesPage ? styles.servicesPage : ''}`}>
             <div className={`container ${styles.content}`}>
                 <div className={styles.contactInfo}>
                     <Phone size={16} />
