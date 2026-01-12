@@ -3,6 +3,20 @@
         "title": "Fayed Clinic",
         "welcome": "Welcome to Fayed Clinic"
     },
+    "Hero": {
+        "heading": "Expert Care for Pain Relief and Enhanced Function",
+        "subheading": "At Haraka Physical Therapy Center, we provide personalized treatment plans tailored to your individual health goals. Our team of experienced professionals is committed to helping you restore movement, relieve pain, and achieve optimal physical wellness.",
+        "professionalStaff": "Professional Staff",
+        "branchClinic": "Branch Clinic",
+        "satisfiedClient": "Satisfied Client",
+        "freeConsultation": "Free Consultation",
+        "watchIntro": "Watch Intro",
+        "openingHours": "Opening Hours",
+        "openingHoursDetails": "Sat – Mon – Wed: 11:00 AM - 11:00 PM",
+        "ourLocation": "Our Location",
+        "ourLocationValue": "First Settlement, Al-Nakhil Resort, Cairo, Egypt",
+        "appointment": "Make an Appointment"
+    },
     "Navigation": {
         "home": "Home",
         "about": "About",
@@ -31,6 +45,7 @@
             "physiotherapy": "Physiotherapy Sessions",
             "posture": "Posture Correction",
             "massage": "Massage Therapy"
-        }
+        },
+        "ourLocationValue": "First Settlement, Al-Nakhil Resort, Cairo, Egypt"
     }
 }

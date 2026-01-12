@@ -2,28 +2,29 @@ import { Phone, Facebook, Instagram } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import styles from './NavbarTop.module.scss';
 
 export default function NavbarTop() {
     const t = useTranslations('TopBar');
 
     return (
-        <div className="bg-light py-2 border-bottom d-none d-md-block">
-            <div className="container d-flex justify-content-between align-items-center">
+        <div className={styles.navbarTop}>
+            <div className={`container ${styles.content}`}>
                 {/* Left Side: Contact Info */}
-                <div className="d-flex align-items-center gap-2">
-                    <Phone size={16} className="text-secondary" />
-                    <span className="small fw-medium text-secondary">{t('callUs')} – (+62) 987 654 3219</span>
+                <div className={styles.contactInfo}>
+                    <Phone size={16} />
+                    <span className="fw-medium">{t('callUs')} – +20 10 26170990</span>
                 </div>
 
                 {/* Right Side: Social Media */}
-                <div className="d-flex align-items-center gap-3">
-                    <a href="#" className="text-secondary text-decoration-none transition-hover scale-hover">
+                <div className={styles.socialIcons}>
+                    <a href="https://www.facebook.com/profile.php?id=61583335516641" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                         <Facebook size={18} />
                     </a>
-                    <a href="#" className="text-secondary text-decoration-none transition-hover scale-hover">
+                    <a href="https://www.instagram.com/harakaphysio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                         <Instagram size={18} />
                     </a>
-                    <a href="#" className="text-secondary text-decoration-none transition-hover scale-hover">
+                    <a href="https://wa.me/201026170990" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                         <FontAwesomeIcon icon={faWhatsapp} size="lg" />
                     </a>
                 </div>

@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
-import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import styles from './Footer.module.scss';
@@ -35,9 +35,13 @@ export default function Footer() {
                             <a href="mailto:support@fayedclinic.com" className={styles.contactLink}>
                                 <Mail size={16} /> support@fayedclinic.com
                             </a>
-                            <a href="tel:+629876543219" className={styles.contactLink}>
-                                <Phone size={16} /> (+20) 123 456 789
+                            <a href="tel:+201026170990" className={styles.contactLink}>
+                                <Phone size={16} /> +20 10 26170990
                             </a>
+                            <div className={styles.contactLink}>
+                                <MapPin size={16} />
+                                <span>{t('ourLocationValue')}</span>
+                            </div>
                         </div>
                     </div>
 
@@ -56,9 +60,9 @@ export default function Footer() {
                     <div className="col-lg-2 col-md-6">
                         <h5 className={styles.heading}>{t('socials')}</h5>
                         <ul className={styles.linkList}>
-                            <li><a href="#" className={styles.linkItem}><Facebook size={16} /> {t('socialNetworks.facebook')}</a></li>
-                            <li><a href="#" className={styles.linkItem}><FontAwesomeIcon icon={faWhatsapp} style={{ width: 16, height: 16 }} /> {t('socialNetworks.whatsapp')}</a></li>
-                            <li><a href="#" className={styles.linkItem}><Instagram size={16} /> {t('socialNetworks.instagram')}</a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=61583335516641" target="_blank" rel="noopener noreferrer" className={styles.linkItem}><Facebook size={16} /> {t('socialNetworks.facebook')}</a></li>
+                            <li><a href="https://wa.me/201026170990" target="_blank" rel="noopener noreferrer" className={styles.linkItem}><FontAwesomeIcon icon={faWhatsapp} style={{ width: 16, height: 16 }} /> {t('socialNetworks.whatsapp')}</a></li>
+                            <li><a href="https://www.instagram.com/harakaphysio/" target="_blank" rel="noopener noreferrer" className={styles.linkItem}><Instagram size={16} /> {t('socialNetworks.instagram')}</a></li>
                         </ul>
                     </div>
 

@@ -1,0 +1,52 @@
+@use "../../styles/variables" as *;
+
+.navbarTop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1030; // Above Header (which is 1020)
+    background-color: transparent; // Transparent background
+    padding-block: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); // Subtle divider
+    font-size: 0.9rem;
+
+    @media (max-width: 767.98px) {
+        display: none; // Hidden on mobile as per original d-none d-md-block
+    }
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contactInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white; // White text for hero overlay
+
+    svg {
+        color: $color-accent; // Accent color for icons
+    }
+}
+
+.socialIcons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    a {
+        color: white;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            color: $color-accent;
+        }
+    }
+}

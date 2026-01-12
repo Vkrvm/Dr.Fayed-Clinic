@@ -1,20 +1,81 @@
 @use "../../styles/variables" as *;
 
 .header {
-    background-color: white;
-    // sticky-top behavior is handled by bootstrap class usually, or we can add it here
-    position: sticky;
+    background-color: transparent;
+    position: fixed; // Fixed to overlay hero
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 1020;
-    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    transition: all 0.3s ease-in-out;
+    padding-block: 10px; // Default padding
+
+    &.scrolled,
+    &.open {
+        background-color: white;
+        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+        padding-block: 0; // Compact on scroll
+
+        .navLink {
+            color: $color-primary; // Restore dark color
+        }
+
+        .languageBtn {
+            color: $color-primary;
+        }
+
+        .menuToggle :global(svg path) {
+            stroke: $color-accent;
+        }
+    }
+
+    &.transparent {
+
+        // Apply transparency only if NOT open
+        &:not(.open) {
+            background-color: transparent;
+            box-shadow: none;
+
+            // Push down below topbar on desktop
+            @media (min-width: 768px) {
+                top: 46px;
+            }
+
+            // Mobile (topbar hidden) -> top: 0
+            @media (max-width: 767.98px) {
+                top: 0;
+                padding-top: 0;
+            }
+
+            // White text when transparent (but NOT when open)
+            .navLink {
+                color: white;
+
+                &:hover,
+                :global(.active) {
+                    color: $color-accent !important;
+                }
+            }
+
+            .languageBtn {
+                color: white;
+
+                &:hover {
+                    color: $color-accent;
+                }
+            }
+
+            // Hamburger icon white
+            .menuToggle :global(svg path) {
+                stroke: $color-accent;
+            }
+        }
+    }
 }
 
 .logoLink {
     text-decoration: none;
-    // Bootstrap navbar-brand has margin-right: 1rem by default.
-    // In RTL, this becomes spacing on the 'inner' side if not flipped, or weird spacing.
-    // User requested margin 0 in Arabic.
-    // logical property reset:
     margin-inline-end: 0 !important;
 
     :global([dir="rtl"]) & {
@@ -24,38 +85,28 @@
 
 .logo {
     width: auto;
-    height: 70px; // Default desktop height
+    height: 70px;
     object-fit: contain;
 
-    // Mobile media query
     @media (max-width: 991.98px) {
-        height: 50px; // Smaller height for mobile
+        height: 50px;
     }
 }
 
 .navLink {
     font-size: 0.95rem;
     font-weight: bold;
-    color: $color-primary;
+    color: white; // Default to white for transparent state
     transition: color 0.2s ease;
 
     &:hover,
     :global(.active) {
-        color: $color-secondary !important;
+        color: $color-accent !important; // Used accent for active
     }
 }
 
 .actionsContainer {
-    // Replaces ms-4.
-    // We want spacing from the nav items.
-    // LTR -> Spacing on Left (Start).
-    // RTL -> Spacing on Right (Start).
-    margin-inline-start: 1.5rem; // Logic property for "ms-4"
-
-    // User said "in arabic must be me-4" (which implies margin-left in RTL if interpreted strictly as class, OR margin-right if interpreted as position).
-    // If we rely on logical `margin-inline-start`, it puts margin on Right in RTL.
-    // The user's complaint "ms-4" (margin-left) staying margin-left in RTL is the bug.
-    // So margin-inline-start fixes it.
+    margin-inline-start: 1.5rem;
 }
 
 .mobileMenu {
@@ -63,7 +114,6 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     overflow: hidden;
 
-    // Fix for RTL padding issue (Bootstrap SCSS defaults usually miss logical props)
     :global(.navbar-nav) {
         padding-inline-start: 0;
     }
@@ -87,7 +137,7 @@
 }
 
 .appointmentBtn {
-    background-color: #457D9A; // Explicitly using requested secondary color
+    background-color: $color-accent;
     border-radius: 10px;
     padding-block: 17px;
     padding-inline: 30px;
@@ -95,18 +145,17 @@
     transition: all 0.3s ease;
     border: none;
     text-decoration: none;
-    display: flex; // Added for alignment
-    align-items: center; // Added for alignment
-    justify-content: center; // Added for alignment
-    gap: 0.5rem; // Use gap instead of margins
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 
-    // RTL: Reverse direction as requested
     :global([dir="rtl"]) & {
         flex-direction: row-reverse;
     }
 
     &:hover {
-        background-color: color-mix(in srgb, #457D9A, black 10%);
+        background-color: color-mix(in srgb, $color-accent, black 10%);
         color: white;
         transform: translateY(-2px);
     }
@@ -120,12 +169,10 @@
     outline: none;
     box-shadow: none !important;
     background: transparent;
-    z-index: 1030; // Ensure it's above other things
+    z-index: 1030;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    // Explicitly visible on mobile, hidden on desktop
     display: flex;
 
     @media (min-width: 992px) {
@@ -137,7 +184,7 @@
         height: 24px;
 
         path {
-            stroke: $color-primary; // Use SCSS variable
+            stroke: $color-primary;
             stroke-width: 3px;
         }
     }
