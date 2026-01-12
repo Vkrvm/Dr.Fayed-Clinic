@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/routing';
+import { Link, usePathname, useRouter } from '@/i18n/routing';
 import Image from 'next/image';
 import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,19 +12,29 @@ export default function Footer() {
     const t = useTranslations('Footer');
     const tNav = useTranslations('Navigation');
     const currentYear = new Date().getFullYear();
+    const router = useRouter();
+
+    const handleAboutClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            router.push('/?target=about');
+        }
+    };
 
     return (
         <footer className={`text-white pt-5 pb-3 mt-auto ${styles.footer}`}>
             <div className="container">
                 <div className="row gy-4 justify-content-between">
-                    {/* Column 1: Info */}
                     <div className="col-lg-4 col-md-6">
                         <div className={styles.logoContainer}>
                             <Image
                                 src="/images/fayed-logo_bg_removed.png.png"
                                 alt="Dr. Fayed Logo"
-                                width={200} // High resolution intrinsic width
-                                height={200} // High resolution intrinsic height
+                                width={200}
+                                height={200}
                                 className={styles.logo}
                             />
                         </div>
@@ -45,18 +55,16 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Column 2: Quick Links */}
                     <div className="col-lg-2 col-md-6">
                         <h5 className={styles.heading}>{t('quickLinks')}</h5>
                         <ul className={styles.linkList}>
                             <li><Link href="/" className={styles.linkItem}>{tNav('home')}</Link></li>
-                            <li><Link href="/about" className={styles.linkItem}>{tNav('about')}</Link></li>
+                            <li><Link href="/#about" className={styles.linkItem} onClick={handleAboutClick}>{tNav('about')}</Link></li>
                             <li><Link href="/appointment" className={styles.linkItem}>{tNav('appointment')}</Link></li>
                             <li><Link href="/services" className={styles.linkItem}>{tNav('services')}</Link></li>
                         </ul>
                     </div>
 
-                    {/* Column 3: Socials */}
                     <div className="col-lg-2 col-md-6">
                         <h5 className={styles.heading}>{t('socials')}</h5>
                         <ul className={styles.linkList}>
@@ -66,7 +74,6 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Column 4: Our Services (Static for now) */}
                     <div className="col-lg-3 col-md-6">
                         <h5 className={styles.heading}>{t('services')}</h5>
                         <ul className={styles.linkList}>
@@ -87,7 +94,7 @@ export default function Footer() {
                         </p>
                     </div>
                     <div className="col-md-6 text-center text-md-end mt-2 mt-md-0">
-                        <small className="opacity-50">Designed for Fayed Clinic</small>
+                        <small className="opacity-50">{t('designedFor')}</small>
                     </div>
                 </div>
             </div>

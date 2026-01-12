@@ -15,10 +15,10 @@
     &.open {
         background-color: white;
         box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
-        padding-block: 0; // Compact on scroll
+        padding-block: 0;
 
         .navLink {
-            color: $color-primary; // Restore dark color
+            color: $color-primary;
         }
 
         .languageBtn {
@@ -32,28 +32,24 @@
 
     &.transparent {
 
-        // Apply transparency only if NOT open
         &:not(.open) {
             background-color: transparent;
             box-shadow: none;
 
-            // Push down below topbar on desktop
             @media (min-width: 768px) {
                 top: 46px;
             }
 
-            // Mobile (topbar hidden) -> top: 0
             @media (max-width: 767.98px) {
                 top: 0;
                 padding-top: 0;
             }
 
-            // White text when transparent (but NOT when open)
             .navLink {
                 color: white;
 
                 &:hover,
-                :global(.active) {
+                &.activeLink {
                     color: $color-accent !important;
                 }
             }
@@ -66,7 +62,6 @@
                 }
             }
 
-            // Hamburger icon white
             .menuToggle :global(svg path) {
                 stroke: $color-accent;
             }
@@ -96,12 +91,12 @@
 .navLink {
     font-size: 0.95rem;
     font-weight: bold;
-    color: white; // Default to white for transparent state
+    color: white;
     transition: color 0.2s ease;
 
     &:hover,
-    :global(.active) {
-        color: $color-accent !important; // Used accent for active
+    &.activeLink {
+        color: $color-accent !important;
     }
 }
 
@@ -113,9 +108,15 @@
     background-color: white;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    position: relative;
+    z-index: 1050; // Ensure it's above everything
 
     :global(.navbar-nav) {
         padding-inline-start: 0;
+    }
+
+    .activeMobile {
+        color: $color-accent !important;
     }
 }
 

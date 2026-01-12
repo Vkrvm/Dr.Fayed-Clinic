@@ -34,7 +34,7 @@
         "socials": "Socials",
         "services": "Our Services",
         "contactInfo": "Contact Info",
-        "copyright": "Copyright © {year} Fayed Clinic. All rights reserved.",
+        "copyright": "Copyright © {year} Haraka Physical Therapy Center. All rights reserved.",
         "socialNetworks": {
             "facebook": "Facebook",
             "whatsapp": "WhatsApp",
@@ -46,6 +46,18 @@
             "posture": "Posture Correction",
             "massage": "Massage Therapy"
         },
-        "ourLocationValue": "First Settlement, Al-Nakhil Resort, Cairo, Egypt"
+        "ourLocationValue": "First Settlement, Al-Nakhil Resort, Cairo, Egypt",
+        "designedFor": "Designed for Haraka Physical Therapy Center"
+    },
+    "About": {
+        "label": "About Us",
+        "heading": "Dedicated to Your Health, Committed to Your Recovery",
+        "description": "At Haraka Physical Therapy Center, we provide personalized treatment plans tailored to your individual health goals. Our team of experienced professionals is committed to helping you restore movement, relieve pain, and achieve optimal physical wellness.",
+        "missionTitle": "Our Mission",
+        "missionText": "To enhance lives through compassionate, comprehensive care tailored to individual needs.",
+        "visionTitle": "Our Vision",
+        "visionText": "To be a leading provider of innovative and patient-centered physiotherapy and rehabilitation.",
+        "learnMore": "Learn More",
+        "callUsAnytime": "Call Us Anytime"
     }
 }

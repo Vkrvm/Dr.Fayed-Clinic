@@ -14,9 +14,6 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
 
     const spring = useSpring(0, { mass: 0.8, stiffness: 75, damping: 15 });
     const display = useTransform(spring, (current) =>
-        // Format: if integer, show integer. If float, show 1 decimal place.
-        // For 7.3, we want 1 decimal. For 60, 0 decimals.
-        // Quick logic: value % 1 !== 0? 
         (Number.isInteger(value) ? Math.round(current) : current.toFixed(1)) + suffix
     );
 
@@ -33,10 +30,9 @@ export default function Hero() {
     const t = useTranslations('Hero');
 
     return (
-        <section className={styles.heroSection}>
+        <section className={styles.heroSection} id="home">
             <div className={`container ${styles.container}`}>
                 <div className="row align-items-center">
-                    {/* Left Content */}
                     <div className="col-lg-6 mb-5 mb-lg-0">
                         <motion.h1
                             className={styles.heading}
@@ -55,7 +51,6 @@ export default function Hero() {
                             {t('subheading')}
                         </motion.p>
 
-                        {/* Stats */}
                         <motion.div
                             className={styles.statsContainer}
                             initial={{ opacity: 0 }}
@@ -81,11 +76,8 @@ export default function Hero() {
                                 <div className={styles.statLabel}>{t('satisfiedClient')}</div>
                             </div>
                         </motion.div>
-
-                        {/* Buttons Removed as per request */}
                     </div>
 
-                    {/* Right Image Grid */}
                     <div className="col-lg-6">
                         <motion.div
                             className={styles.imagesColumn}
@@ -93,7 +85,6 @@ export default function Hero() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
                         >
-                            {/* Large Top Image */}
                             <div className={styles.largeImageWrapper}>
                                 <Image
                                     src="/images/hero-1-v2.webp"
@@ -107,7 +98,6 @@ export default function Hero() {
                     </div>
                 </div>
 
-                {/* Floating Info Card */}
                 <motion.div
                     className={styles.floatingCard}
                     initial={{ opacity: 0, y: 50 }}

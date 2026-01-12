@@ -10,13 +10,11 @@ export default function NavbarTop() {
     return (
         <div className={styles.navbarTop}>
             <div className={`container ${styles.content}`}>
-                {/* Left Side: Contact Info */}
                 <div className={styles.contactInfo}>
                     <Phone size={16} />
                     <span className="fw-medium">{t('callUs')} – +20 10 26170990</span>
                 </div>
 
-                {/* Right Side: Social Media */}
                 <div className={styles.socialIcons}>
                     <a href="https://www.facebook.com/profile.php?id=61583335516641" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                         <Facebook size={18} />

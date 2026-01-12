@@ -2,11 +2,9 @@
 
 .footer {
     background-color: transparent;
-    // LTR Gradient
     background-image: linear-gradient(90deg, #457D9A 0%, rgba(69, 125, 154, 0.82) 80%);
 
     :global([dir="rtl"]) & {
-        // RTL Gradient (flipped)
         background-image: linear-gradient(270deg, #457D9A 0%, rgba(69, 125, 154, 0.82) 80%);
     }
 }
@@ -32,7 +30,7 @@
 }
 
 .contactLink {
-    color: $color-gray-100 !important; // Force light color
+    color: $color-gray-100 !important;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -52,7 +50,7 @@
 }
 
 .linkList {
-    color: $color-gray-100 !important; // Force light color
+    color: $color-gray-100 !important;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -63,7 +61,7 @@
 }
 
 .linkItem {
-    color: $color-gray-100 !important; // Force light color
+    color: $color-gray-100 !important;
     text-decoration: none;
     transition: all 0.2s ease;
     display: flex;
@@ -73,7 +71,6 @@
     &:hover {
         text-decoration: underline;
         opacity: 1;
-        // Logic: move "forward"
         transform: translateX(3px);
 
         :global([dir="rtl"]) & {

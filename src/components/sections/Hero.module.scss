@@ -27,38 +27,6 @@
     }
 }
 
-.floatingCard {
-    background-color: #f8f9fa;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    position: relative;
-    z-index: 10;
-    max-width: 1100px;
-    margin-inline: auto;
-
-    margin-top: 4rem;
-    margin-bottom: -160px;
-
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-
-    color: $color-text;
-
-    @media (max-width: 991.98px) {
-        flex-wrap: wrap;
-        margin-top: 3rem;
-        margin-bottom: -100px;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1.5rem;
-        top: 30px;
-    }
-}
-
 .container {
     position: relative;
     z-index: 2;
@@ -69,7 +37,6 @@
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1.5rem;
-
     @media (min-width: 992px) {
         font-size: 3.5rem;
     }
@@ -88,7 +55,6 @@
     gap: 3rem;
     margin-bottom: 3rem;
     flex-wrap: wrap;
-
     @media (max-width: 768px) {
         gap: 1rem;
         flex-wrap: nowrap;
@@ -98,7 +64,6 @@
 
 .statItem {
     text-align: start;
-
     @media (max-width: 768px) {
         min-width: fit-content;
     }
@@ -109,7 +74,6 @@
     font-weight: 700;
     line-height: 1;
     margin-bottom: 0.5rem;
-
     @media (max-width: 768px) {
         font-size: 1.8rem;
     }
@@ -163,7 +127,6 @@
         justify-content: center;
         transition: all 0.3s ease;
         position: relative;
-
         &::after {
             content: '';
             width: 35px;
@@ -173,7 +136,6 @@
             position: absolute;
             transition: all 0.3s ease;
         }
-
         svg {
             z-index: 2;
         }
@@ -184,13 +146,11 @@
             background-color: white;
             color: $color-secondary;
             border-color: white;
-
             &::after {
                 background-color: white;
                 opacity: 0;
             }
         }
-
         color: white;
     }
 }
@@ -256,14 +216,14 @@
     z-index: 10;
     max-width: 1100px;
     margin-inline: auto;
-    margin-top: 4rem;
+    margin-top: 2rem;
+    margin-bottom: -160px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
     color: $color-text;
-
     @media (max-width: 991.98px) {
         margin-top: 3rem;
         flex-direction: column;
@@ -276,7 +236,6 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-
     .iconBox {
         width: 60px;
         height: 60px;
@@ -287,7 +246,6 @@
         justify-content: center;
         color: $color-accent;
         flex-shrink: 0;
-
         svg {
             width: 28px;
             height: 28px;

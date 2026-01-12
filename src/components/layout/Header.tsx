@@ -8,27 +8,43 @@ import { Globe, Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import styles from './Header.module.scss';
-// ... imports
 
 export default function Header() {
     const t = useTranslations('Navigation');
     const pathname = usePathname();
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
 
     const navLinks = [
         { key: 'home', href: '/' },
-        { key: 'about', href: '/about' },
+        { key: 'about', href: '/#about' },
         { key: 'services', href: '/services' },
         { key: 'contact', href: '/contact' },
     ];
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+            const scrollPosition = window.scrollY;
+            setIsScrolled(scrollPosition > 50);
+
+            // Active section logic
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                const aboutOffset = aboutSection.offsetTop - 150; // Offset for header
+                if (scrollPosition >= aboutOffset) {
+                    setActiveSection('about');
+                } else {
+                    setActiveSection('home');
+                }
+            }
         };
 
         window.addEventListener('scroll', handleScroll);
+        // Trigger once on mount to set initial state
+        handleScroll();
+
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -36,7 +52,6 @@ export default function Header() {
         <header className={`${styles.header} ${isScrolled ? styles.scrolled : styles.transparent} ${isOpen ? styles.open : ''}`}>
             <nav className="navbar navbar-expand-lg navbar-light py-3">
                 <div className="container">
-                    {/* Logo */}
                     <Link href="/" className={`navbar-brand d-flex align-items-center gap-2 ${styles.logoLink}`} onClick={() => setIsOpen(false)}>
                         <Image
                             src="/images/fayed-logo_bg_removed.png.png"
@@ -44,11 +59,10 @@ export default function Header() {
                             width={0}
                             height={0}
                             sizes="100vw"
-                            className={styles.logo} // Used class instead of inline style
+                            className={styles.logo}
                         />
                     </Link>
 
-                    {/* Animated Hamburger Toggle */}
                     <button
                         className={`navbar-toggler border-0 p-0 ${styles.menuToggle}`}
                         type="button"
@@ -91,14 +105,31 @@ export default function Header() {
                         </motion.div>
                     </button>
 
-                    {/* Collapsible Content - Desktop */}
                     <div className="collapse navbar-collapse justify-content-end d-none d-lg-flex">
                         <ul className="navbar-nav align-items-center gap-4 mb-0">
                             {navLinks.map((link) => (
                                 <li className="nav-item" key={link.key}>
                                     <Link
-                                        href={link.href as any}
-                                        className={`nav-link ${styles.navLink} ${pathname === link.href ? 'active' : ''}`}
+                                        href={link.key === 'about' ? '/#' : (link.href as any)}
+                                        className={`nav-link ${styles.navLink} ${activeSection === link.key ? styles.activeLink : ''}`}
+                                        onClick={(e) => {
+                                            if (link.key === 'home') {
+                                                e.preventDefault();
+                                                if (pathname === '/') {
+                                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                                } else {
+                                                    router.push('/');
+                                                }
+                                            } else if (link.key === 'about') {
+                                                e.preventDefault();
+                                                const aboutSection = document.getElementById('about');
+                                                if (aboutSection) {
+                                                    aboutSection.scrollIntoView({ behavior: 'smooth' });
+                                                } else {
+                                                    router.push('/?target=about');
+                                                }
+                                            }
+                                        }}
                                     >
                                         {t(link.key)}
                                     </Link>
@@ -117,7 +148,6 @@ export default function Header() {
                 </div>
             </nav>
 
-            {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -131,13 +161,38 @@ export default function Header() {
                             <ul className="navbar-nav gap-3 mb-4">
                                 {navLinks.map((link) => (
                                     <li className="nav-item" key={link.key}>
-                                        <Link
-                                            href={link.href as any}
-                                            className={`nav-link fw-bold fs-5 ${pathname === link.href ? 'text-secondary' : 'text-primary'}`}
-                                            onClick={() => setIsOpen(false)}
+                                        <div
+                                            className={`nav-link fw-bold fs-5 ${activeSection === link.key ? styles.activeMobile : 'text-dark'}`}
+                                            role="button"
+                                            style={{ cursor: 'pointer' }}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+
+                                                setIsOpen(false);
+
+                                                setTimeout(() => {
+                                                    if (link.key === 'home') {
+                                                        if (pathname === '/') {
+                                                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                                                        } else {
+                                                            router.push('/');
+                                                        }
+                                                    } else if (link.key === 'about') {
+                                                        const aboutSection = document.getElementById('about');
+                                                        if (aboutSection) {
+                                                            aboutSection.scrollIntoView({ behavior: 'smooth' });
+                                                        } else {
+                                                            router.push('/?target=about');
+                                                        }
+                                                    } else {
+                                                        router.push(link.href as any);
+                                                    }
+                                                }, 350); // Wait for menu close animation
+                                            }}
                                         >
                                             {t(link.key)}
-                                        </Link>
+                                        </div>
                                     </li>
                                 ))}
                             </ul>
@@ -146,14 +201,18 @@ export default function Header() {
                                     <span className="fw-bold text-primary">Language</span>
                                     <LanguageSwitcher />
                                 </div>
-                                <Link
-                                    href="/appointment"
+                                <div
                                     className={`${styles.appointmentBtn} fw-bold w-100 shadow-sm`}
-                                    onClick={() => setIsOpen(false)}
+                                    role="button"
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => {
+                                        router.push('/appointment');
+                                        setIsOpen(false);
+                                    }}
                                 >
                                     <Plus size={18} strokeWidth={3} />
                                     {t('appointment')}
-                                </Link>
+                                </div>
                             </div>
                         </div>
                     </motion.div>

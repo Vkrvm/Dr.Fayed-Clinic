@@ -1,14 +1,16 @@
 import { useTranslations } from 'next-intl';
 import Hero from '@/components/sections/Hero';
+import About from '@/components/sections/About';
+import ScrollToSection from '@/components/layout/ScrollToSection';
 
 export default function HomePage() {
   const t = useTranslations('HomePage');
   return (
     <main>
+      <ScrollToSection />
       <Hero />
-      {/* Rest of the page content will go here */}
+      <About />
       <div className="container py-5">
-        {/* Temporary placeholder for next sections */}
       </div>
     </main>
   );
