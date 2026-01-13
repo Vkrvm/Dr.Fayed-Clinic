@@ -18,7 +18,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 0.85rem;
+    font-size: 2rem;
     display: block;
     margin-bottom: 1rem;
 }
@@ -48,6 +48,14 @@
     padding: 1rem 2rem;
     border-radius: 50px;
     border: 1px solid rgba(0, 0, 0, 0.05);
+
+    @media (max-width: 768px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        border-radius: 20px;
+        padding: 1rem;
+    }
 
     p {
         margin-bottom: 0;

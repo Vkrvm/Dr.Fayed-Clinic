@@ -3,16 +3,31 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import ServiceForm from '@/components/dashboard/ServiceForm';
-import { servicesData } from '@/lib/mock-data';
+import { useServices } from '@/hooks/useServices';
 import styles from '../../new/NewServicePage.module.scss';
 
 export default function EditServicePage() {
     const params = useParams();
     const serviceId = params.id as string;
+    const { services, isLoaded, getService } = useServices();
+    const [service, setService] = useState<any>(null);
 
-    // Find the service by ID
-    const service = servicesData.find(s => s.id === serviceId);
+    useEffect(() => {
+        if (isLoaded) {
+            const found = services.find(s => s.id === serviceId);
+            setService(found || null);
+        }
+    }, [isLoaded, services, serviceId]);
+
+    if (!isLoaded) {
+        return (
+            <div className={styles.container}>
+                <p>Loading...</p>
+            </div>
+        );
+    }
 
     if (!service) {
         return (
@@ -22,6 +37,7 @@ export default function EditServicePage() {
                     Back to Services
                 </Link>
                 <h1>Service not found</h1>
+                <p>The service with ID "{serviceId}" doesn't exist.</p>
             </div>
         );
     }
@@ -38,7 +54,7 @@ export default function EditServicePage() {
                 <p className={styles.subtitle}>Update service details</p>
             </div>
 
-            <ServiceForm initialData={service} />
+            <ServiceForm initialData={service} isEditing={true} serviceId={serviceId} />
         </div>
     );
 }

@@ -79,12 +79,6 @@ export default function SignInPage() {
                     <button type="submit" disabled={loading} className={styles.submitBtn}>
                         {loading ? 'Signing in...' : 'Sign In'}
                     </button>
-
-                    <div className={styles.demoCredentials}>
-                        <p><strong>Demo Credentials:</strong></p>
-                        <p>Email: admin@fayedclinic.com</p>
-                        <p>Password: Admin123!</p>
-                    </div>
                 </form>
             </div>
         </div>

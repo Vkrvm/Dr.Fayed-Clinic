@@ -1,5 +1,9 @@
 @use "../../../../styles/variables" as *;
 
+.main {
+    background-color: #f8f9fa;
+}
+
 .container {
     max-width: 1400px;
 }
@@ -134,4 +138,59 @@
     &:hover {
         background-color: rgba(#c33, 0.2);
     }
+}
+
+.dragHandle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: grab;
+    color: #999;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: $color-primary;
+    }
+
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+.featuredBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background: transparent;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #ccc;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+        border-color: #ffc107;
+        color: #ffc107;
+    }
+
+    &.featured {
+        border-color: #ffc107;
+        background-color: rgba(#ffc107, 0.1);
+        color: #ffc107;
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+}
+
+.featuredInfo {
+    color: $color-accent;
+    font-weight: 600;
+    margin-left: 0.5rem;
 }

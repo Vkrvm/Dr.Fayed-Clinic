@@ -1,12 +1,13 @@
 'use client';
 
 import { Link } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import { Clock, MapPin, Plus } from 'lucide-react';
 import styles from './Hero.module.scss';
 import { motion, useInView, useSpring, useTransform } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { getSiteSettings } from '@/lib/actions/settings';
 
 function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
     const ref = useRef<HTMLSpanElement>(null);
@@ -28,6 +29,18 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
 
 export default function Hero() {
     const t = useTranslations('Hero');
+    const locale = useLocale();
+    const [heroImage, setHeroImage] = useState('/images/hero-1-v2.webp');
+
+    useEffect(() => {
+        const loadSettings = async () => {
+            const settings = await getSiteSettings();
+            if (settings) {
+                setHeroImage(locale === 'ar' ? settings.heroImage_ar : settings.heroImage_en);
+            }
+        };
+        loadSettings();
+    }, [locale]);
 
     return (
         <section className={styles.heroSection} id="home">
@@ -87,7 +100,7 @@ export default function Hero() {
                         >
                             <div className={styles.largeImageWrapper}>
                                 <Image
-                                    src="/images/hero-1-v2.webp"
+                                    src={heroImage}
                                     alt="Chiropractic Treatment"
                                     fill
                                     sizes="(max-width: 768px) 100vw, 50vw"

@@ -11,8 +11,11 @@ export default function ServicesSection() {
     const t = useTranslations('Services');
     const { services, isLoaded } = useServices();
 
-    // Take first 3 services
-    const featuredServices = services.slice(0, 3);
+    // Show featured services first, sorted by displayOrder
+    // If no featured services, fall back to newest 3
+    const featuredServices = services.filter(s => s.isFeatured).length > 0
+        ? [...services].filter(s => s.isFeatured).sort((a, b) => (a.displayOrder ?? 0) - (b.displayOrder ?? 0))
+        : [...services].reverse().slice(0, 3);
 
     return (
         <section className={styles.section} id="services">

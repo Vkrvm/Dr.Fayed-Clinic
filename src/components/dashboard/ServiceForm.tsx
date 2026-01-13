@@ -3,9 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Save } from 'lucide-react';
+import { useServices } from '@/hooks/useServices';
 import styles from './ServiceForm.module.scss';
-import { STORAGE_KEY, Service } from '@/hooks/useServices';
-import { servicesData as initialServices } from '@/lib/mock-data';
 
 interface ServiceFormProps {
     initialData?: {
@@ -14,7 +13,8 @@ interface ServiceFormProps {
         title_ar: string;
         description_en: string;
         description_ar: string;
-        imageUrl: string;
+        imageUrl_en: string;
+        imageUrl_ar: string;
         icon: string;
     };
 }
@@ -30,9 +30,15 @@ const iconOptions = [
 
 export default function ServiceForm({ initialData }: ServiceFormProps) {
     const router = useRouter();
+    const { addService, updateService } = useServices();
     const [loading, setLoading] = useState(false);
-    const [imageFile, setImageFile] = useState<File | null>(null);
-    const [imagePreview, setImagePreview] = useState<string>(initialData?.imageUrl || '');
+
+    const [imageFile_en, setImageFile_en] = useState<File | null>(null);
+    const [imagePreview_en, setImagePreview_en] = useState<string>(initialData?.imageUrl_en || '');
+
+    const [imageFile_ar, setImageFile_ar] = useState<File | null>(null);
+    const [imagePreview_ar, setImagePreview_ar] = useState<string>(initialData?.imageUrl_ar || '');
+
     const [formData, setFormData] = useState({
         title_en: initialData?.title_en || '',
         title_ar: initialData?.title_ar || '',
@@ -41,13 +47,56 @@ export default function ServiceForm({ initialData }: ServiceFormProps) {
         icon: initialData?.icon || 'Activity',
     });
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const compressImage = (base64Str: string, maxWidth = 800, maxHeight = 600): Promise<string> => {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.src = base64Str;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height *= maxWidth / width;
+                        width = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width *= maxHeight / height;
+                        height = maxHeight;
+                    }
+                }
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx?.drawImage(img, 0, 0, width, height);
+                resolve(canvas.toDataURL('image/jpeg', 0.7)); // 0.7 quality
+            };
+        });
+    };
+
+    const handleImageChange_en = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            setImageFile(file);
+            setImageFile_en(file);
             const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result as string);
+            reader.onloadend = async () => {
+                const compressed = await compressImage(reader.result as string);
+                setImagePreview_en(compressed);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleImageChange_ar = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setImageFile_ar(file);
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+                const compressed = await compressImage(reader.result as string);
+                setImagePreview_ar(compressed);
             };
             reader.readAsDataURL(file);
         }
@@ -58,38 +107,29 @@ export default function ServiceForm({ initialData }: ServiceFormProps) {
         setLoading(true);
 
         try {
-            // Get current services from localStorage
-            const stored = localStorage.getItem(STORAGE_KEY);
-            let services: Service[] = stored ? JSON.parse(stored) : initialServices;
-
-            const newService: Service = {
-                id: initialData?.id || `service-${Date.now()}`,
+            const serviceData = {
                 title_en: formData.title_en,
                 title_ar: formData.title_ar,
                 description_en: formData.description_en,
                 description_ar: formData.description_ar,
-                imageUrl: imagePreview || '/images/hero-1-v2.webp',
+                imageUrl_en: imagePreview_en || '/images/hero-1-v2.webp',
+                imageUrl_ar: imagePreview_ar || '/images/hero-1-v2.webp',
                 icon: formData.icon,
             };
 
             if (initialData?.id) {
-                // Update existing service
-                services = services.map(s => s.id === initialData.id ? newService : s);
+                await updateService(initialData.id, serviceData);
                 alert('Service updated successfully!');
             } else {
-                // Add new service
-                services.push(newService);
+                await addService(serviceData);
                 alert('Service created successfully!');
             }
-
-            // Save to localStorage
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(services));
 
             setLoading(false);
             router.push('/en/dashboard/services');
         } catch (error) {
             console.error('Error saving service:', error);
-            alert('Error saving service. Please try again.');
+            alert('Error saving service. The image might be too large even for IndexedDB, or there was a system error.');
             setLoading(false);
         }
     };
@@ -133,6 +173,24 @@ export default function ServiceForm({ initialData }: ServiceFormProps) {
                             placeholder="Describe the service in English..."
                         />
                     </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="image_en" className={styles.label}>
+                            Service Image (English)
+                        </label>
+                        <input
+                            id="image_en"
+                            type="file"
+                            accept="image/*"
+                            className={styles.input}
+                            onChange={handleImageChange_en}
+                        />
+                        {imagePreview_en && (
+                            <div className={styles.imagePreview}>
+                                <img src={imagePreview_en} alt="Preview" />
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 <div className={styles.divider} />
@@ -175,50 +233,48 @@ export default function ServiceForm({ initialData }: ServiceFormProps) {
                             placeholder="وصف الخدمة بالعربية..."
                         />
                     </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="image_ar" className={styles.label}>
+                            Service Image (Arabic) / صورة الخدمة
+                        </label>
+                        <input
+                            id="image_ar"
+                            type="file"
+                            accept="image/*"
+                            className={styles.input}
+                            onChange={handleImageChange_ar}
+                        />
+                        {imagePreview_ar && (
+                            <div className={styles.imagePreview}>
+                                <img src={imagePreview_ar} alt="Preview" />
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 <div className={styles.divider} />
 
                 {/* Media & Settings Section */}
                 <div className={styles.section}>
-                    <h2 className={styles.sectionTitle}>Media & Settings</h2>
+                    <h2 className={styles.sectionTitle}>Global Settings</h2>
 
-                    <div className={styles.row}>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="icon" className={styles.label}>
-                                Icon
-                            </label>
-                            <select
-                                id="icon"
-                                className={styles.select}
-                                value={formData.icon}
-                                onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                            >
-                                {iconOptions.map((icon) => (
-                                    <option key={icon} value={icon}>
-                                        {icon}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-
-                        <div className={styles.formGroup}>
-                            <label htmlFor="image" className={styles.label}>
-                                Service Image
-                            </label>
-                            <input
-                                id="image"
-                                type="file"
-                                accept="image/*"
-                                className={styles.input}
-                                onChange={handleImageChange}
-                            />
-                            {imagePreview && (
-                                <div className={styles.imagePreview}>
-                                    <img src={imagePreview} alt="Preview" />
-                                </div>
-                            )}
-                        </div>
+                    <div className={styles.formGroup} style={{ maxWidth: '300px' }}>
+                        <label htmlFor="icon" className={styles.label}>
+                            Icon
+                        </label>
+                        <select
+                            id="icon"
+                            className={styles.select}
+                            value={formData.icon}
+                            onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
+                        >
+                            {iconOptions.map((icon) => (
+                                <option key={icon} value={icon}>
+                                    {icon}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </div>
             </div>

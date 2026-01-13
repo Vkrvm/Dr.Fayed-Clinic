@@ -1,10 +1,14 @@
 @use "../../../styles/variables" as *;
 
 .servicesPage {
-    padding-top: 120px; // Space for fixed header
+    padding-block: 120px;
     min-height: 100vh;
     background-color: #f8f9fa;
-    margin-block: 100px;
+    margin-top: 100px;
+
+    @media (max-width: 768px) {
+        padding-block: 50px;
+    }
 }
 
 .header {
@@ -16,7 +20,7 @@
     display: inline-block;
     color: $color-accent;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 2rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 0.75rem;

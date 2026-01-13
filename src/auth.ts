@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { compare } from "bcryptjs"
+import prisma from "@/lib/prisma"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
@@ -15,19 +16,36 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     return null
                 }
 
-                // For demo purposes - In production, check against database
-                // Default admin: admin@fayedclinic.com / Admin123!
-                if (credentials.email === "admin@fayedclinic.com") {
-                    // This is a demo hash of "Admin123!" - replace with actual DB check
-                    const passwordCorrect = credentials.password === "Admin123!"
+                try {
+                    // Find user in database
+                    const user = await prisma.user.findUnique({
+                        where: { email: credentials.email as string }
+                    })
+
+                    if (!user) {
+                        return null
+                    }
+
+                    // Check if user is active
+                    if (!user.isActive) {
+                        return null
+                    }
+
+                    // Verify password
+                    const passwordCorrect = await compare(
+                        credentials.password as string,
+                        user.password
+                    )
 
                     if (passwordCorrect) {
                         return {
-                            id: "1",
-                            email: "admin@fayedclinic.com",
-                            name: "Admin"
+                            id: user.id,
+                            email: user.email,
+                            name: user.name
                         }
                     }
+                } catch (error) {
+                    console.error('Auth error:', error)
                 }
 
                 return null

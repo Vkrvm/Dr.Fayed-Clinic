@@ -31,6 +31,7 @@ import GlobalTransition from "@/components/layout/GlobalTransition";
 
 import Footer from "@/components/layout/Footer";
 import AuthProvider from "@/components/auth/AuthProvider";
+import { ServicesProvider } from "@/context/ServicesContext";
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
 
 export default async function LocaleLayout({
@@ -55,11 +56,13 @@ export default async function LocaleLayout({
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body className={`${montserrat.variable} ${outfit.variable}`}>
         <AuthProvider>
-          <NextIntlClientProvider messages={messages}>
-            <ConditionalLayout locale={locale}>
-              {children}
-            </ConditionalLayout>
-          </NextIntlClientProvider>
+          <ServicesProvider>
+            <NextIntlClientProvider messages={messages}>
+              <ConditionalLayout locale={locale}>
+                {children}
+              </ConditionalLayout>
+            </NextIntlClientProvider>
+          </ServicesProvider>
         </AuthProvider>
       </body>
     </html>

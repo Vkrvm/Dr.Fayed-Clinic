@@ -14,8 +14,29 @@ model MedicalService {
   title_ar       String
   description_en String?
   description_ar String?
-  imageUrl       String?
+  imageUrl_en    String?
+  imageUrl_ar    String?
   icon           String?
+  isFeatured     Boolean  @default(false)
+  displayOrder   Int      @default(0)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSettings {
+  id            String   @id @default("main")
+  heroImage_en  String   @default("/images/hero-1-v2.webp")
+  heroImage_ar  String   @default("/images/hero-1-v2.webp")
+  updatedAt     DateTime @updatedAt
 }

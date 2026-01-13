@@ -32,11 +32,13 @@ export default function ServicesPage() {
                     </div>
 
                     <div className="row gy-4">
-                        {services.map((service) => (
-                            <div key={service.id} className="col-lg-4 col-md-6">
-                                <ServiceCard service={service} />
-                            </div>
-                        ))}
+                        {[...services]
+                            .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999))
+                            .map((service) => (
+                                <div key={service.id} className="col-lg-4 col-md-6">
+                                    <ServiceCard service={service} />
+                                </div>
+                            ))}
                     </div>
                 </div>
             </section>

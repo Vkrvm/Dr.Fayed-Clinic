@@ -1,0 +1,261 @@
+@use "../../../../styles/variables" as *;
+
+.main {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    padding: 2rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.title {
+    font-size: 2rem;
+    color: $color-primary;
+    margin: 0;
+}
+
+.subtitle {
+    color: $color-text;
+    opacity: 0.7;
+    margin: 0.5rem 0 0;
+}
+
+.addBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: $color-accent;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: darken($color-accent, 10%);
+        transform: translateY(-2px);
+    }
+}
+
+.tableContainer {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        background-color: #f8f9fa;
+
+        th {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: $color-primary;
+            border-bottom: 2px solid #e5e7eb;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid #e5e7eb;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background-color: #f8f9fa;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+
+        td {
+            padding: 1.25rem 1.5rem;
+            color: $color-text;
+        }
+    }
+}
+
+.roleBadge {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    background-color: rgba($color-secondary, 0.1);
+    color: $color-secondary;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.statusBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.active {
+        background-color: rgba(#22c55e, 0.1);
+        color: #22c55e;
+    }
+
+    &.inactive {
+        background-color: rgba(#ef4444, 0.1);
+        color: #ef4444;
+    }
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.passwordBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: rgba($color-accent, 0.1);
+    color: $color-accent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: rgba($color-accent, 0.2);
+    }
+}
+
+.deleteBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(#c33, 0.1);
+    color: #c33;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: rgba(#c33, 0.2);
+    }
+}
+
+// Modal styles
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+    h2 {
+        margin: 0 0 1.5rem;
+        color: $color-primary;
+    }
+}
+
+.formGroup {
+    margin-bottom: 1rem;
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: $color-text;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.2s ease;
+
+        &:focus {
+            outline: none;
+            border-color: $color-accent;
+        }
+    }
+}
+
+.modalActions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.cancelBtn {
+    padding: 0.75rem 1.5rem;
+    background: #e5e7eb;
+    color: $color-text;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+        background: #d1d5db;
+    }
+}
+
+.submitBtn {
+    padding: 0.75rem 1.5rem;
+    background: $color-accent;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+        background: darken($color-accent, 10%);
+    }
+}
