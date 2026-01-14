@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import path from 'path';
+import { supabase, STORAGE_BUCKET } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
     try {
@@ -16,19 +15,26 @@ export async function POST(request: NextRequest) {
         const extension = file.name.split('.').pop() || 'jpg';
         const filename = `hero_${timestamp}.${extension}`;
 
-        // Ensure uploads directory exists
-        const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-        await mkdir(uploadDir, { recursive: true });
-
-        // Convert file to buffer and save
+        // Convert file to array buffer for Supabase
         const arrayBuffer = await file.arrayBuffer();
-        const buffer = Buffer.from(arrayBuffer);
-        const filePath = path.join(uploadDir, filename);
+        const fileBuffer = new Uint8Array(arrayBuffer);
 
-        await writeFile(filePath, buffer);
+        // Upload to Supabase Storage
+        const { data, error } = await supabase.storage
+            .from(STORAGE_BUCKET)
+            .upload(filename, fileBuffer, {
+                contentType: file.type,
+                upsert: false
+            });
 
-        // Return public URL
-        const publicUrl = `/uploads/${filename}`;
+        if (error) {
+            throw error;
+        }
+
+        // Get public URL
+        const { data: { publicUrl } } = supabase.storage
+            .from(STORAGE_BUCKET)
+            .getPublicUrl(filename);
 
         return NextResponse.json({
             success: true,
