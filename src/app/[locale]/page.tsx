@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import ServicesSection from '@/components/sections/ServicesSection';
+import OurValues from '@/components/sections/OurValues';
 import ScrollToSection from '@/components/layout/ScrollToSection';
 
 export default function HomePage() {
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Hero />
       <About />
       <ServicesSection />
+      <OurValues />
     </main>
   );
 }

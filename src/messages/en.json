@@ -20,6 +20,7 @@
     "Navigation": {
         "home": "Home",
         "about": "About",
+        "values": "Our Values",
         "services": "Services",
         "pages": "Pages",
         "contact": "Contact",
@@ -68,5 +69,28 @@
         "viewAllServices": "View All Services",
         "whatWeOffer": "WHAT WE OFFER",
         "pageHeading": "Comprehensive Care For Your Body"
+    },
+    "OurValues": {
+        "label": "OUR VALUE",
+        "heading": "Our Core Values: Guiding Principles of Quality Care",
+        "imageAlt": "Physical therapy session",
+        "values": {
+            "personalizedTreatment": {
+                "title": "Personalized Treatment Plans",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+            },
+            "experiencedProfessionals": {
+                "title": "Experienced Professionals",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+            },
+            "comprehensiveServices": {
+                "title": "Comprehensive Services",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+            },
+            "holisticApproach": {
+                "title": "Holistic Approach to Healing",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+            }
+        }
     }
 }

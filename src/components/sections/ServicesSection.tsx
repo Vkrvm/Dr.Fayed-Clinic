@@ -3,6 +3,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import { motion } from 'framer-motion';
 import styles from './ServicesSection.module.scss';
 import ServiceCard from '../ui/ServiceCard';
 import { useServices } from '@/hooks/useServices';
@@ -20,27 +21,46 @@ export default function ServicesSection() {
     return (
         <section className={styles.section} id="services">
             <div className="container">
-                <div className={styles.header}>
+                <motion.div
+                    className={styles.header}
+                    initial={{ opacity: 0, y: -30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                >
                     <span className={styles.subtitle}>{t('subtitle')}</span>
                     <h2 className={styles.heading}>{t('heading')}</h2>
-                </div>
+                </motion.div>
 
                 <div className="row gy-4">
-                    {featuredServices.map((service) => (
-                        <div key={service.id} className="col-lg-4 col-md-6">
+                    {featuredServices.map((service, index) => (
+                        <motion.div
+                            key={service.id}
+                            className="col-lg-4 col-md-6"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.15 }}
+                            viewport={{ once: true }}
+                        >
                             <ServiceCard service={service} />
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
-                <div className={styles.footer}>
+                <motion.div
+                    className={styles.footer}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    viewport={{ once: true }}
+                >
                     <div className={styles.viewAllContainer}>
                         <p>{t('discoverFullRange')}</p>
                         <Link href="/services" className={styles.viewAllLink}>
                             {t('viewAllServices')}
                         </Link>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

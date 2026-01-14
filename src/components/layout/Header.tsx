@@ -22,6 +22,7 @@ export default function Header() {
         { key: 'home', href: '/' },
         { key: 'about', href: '/#about' },
         { key: 'services', href: '/services' },
+        { key: 'values', href: '/#values' },
         { key: 'contact', href: '/contact' },
     ];
 
@@ -32,14 +33,29 @@ export default function Header() {
 
             // Active section logic
             const aboutSection = document.getElementById('about');
+            const valuesSection = document.getElementById('values');
             const servicesSection = document.getElementById('services');
 
-            if (servicesSection && aboutSection) {
+            if (servicesSection && valuesSection && aboutSection) {
                 const servicesOffset = servicesSection.offsetTop - 150;
+                const valuesOffset = valuesSection.offsetTop - 150;
                 const aboutOffset = aboutSection.offsetTop - 150;
 
-                if (scrollPosition >= servicesOffset) {
+                // Check in reverse order (bottom to top) since values comes after services
+                if (scrollPosition >= valuesOffset) {
+                    setActiveSection('values');
+                } else if (scrollPosition >= servicesOffset) {
                     setActiveSection('services');
+                } else if (scrollPosition >= aboutOffset) {
+                    setActiveSection('about');
+                } else {
+                    setActiveSection('home');
+                }
+            } else if (valuesSection && aboutSection) {
+                const valuesOffset = valuesSection.offsetTop - 150;
+                const aboutOffset = aboutSection.offsetTop - 150;
+                if (scrollPosition >= valuesOffset) {
+                    setActiveSection('values');
                 } else if (scrollPosition >= aboutOffset) {
                     setActiveSection('about');
                 } else {
@@ -66,7 +82,7 @@ export default function Header() {
         <header
             className={`${styles.header} ${isScrolled ? styles.scrolled : styles.transparent} ${isOpen ? styles.open : ''} ${isServicesPage ? styles.servicesPage : ''}`}
         >
-            <nav className="navbar navbar-expand-lg navbar-light py-3">
+            <nav className={`navbar navbar-expand-lg navbar-light py-3 ${styles.desktopNav}`}>
                 <div className="container">
                     <Link href="/" className={`navbar-brand d-flex align-items-center gap-2 ${styles.logoLink}`} onClick={() => setIsOpen(false)}>
                         <Image
@@ -121,8 +137,8 @@ export default function Header() {
                         </motion.div>
                     </button>
 
-                    <div className="collapse navbar-collapse justify-content-end d-none d-lg-flex">
-                        <ul className="navbar-nav align-items-center gap-4 mb-0">
+                    <div className={`collapse navbar-collapse d-none d-lg-flex ${styles.navbarCollapse}`}>
+                        <ul className={`navbar-nav align-items-center gap-4 mb-0 ${styles.navCenter}`}>
                             {navLinks.map((link) => {
                                 // Determine if this link should be active
                                 const isActive = isServicesPage
@@ -132,7 +148,7 @@ export default function Header() {
                                 return (
                                     <li className="nav-item" key={link.key}>
                                         <Link
-                                            href={link.key === 'about' || link.key === 'services' ? '/#' : (link.href as any)}
+                                            href={link.key === 'about' || link.key === 'services' || link.key === 'values' ? '/#' : (link.href as any)}
                                             className={`nav-link ${styles.navLink} ${isActive ? styles.activeLink : ''}`}
                                             onClick={(e) => {
                                                 if (link.key === 'home') {
@@ -149,6 +165,15 @@ export default function Header() {
                                                         aboutSection.scrollIntoView({ behavior: 'smooth' });
                                                     } else {
                                                         router.push('/?target=about');
+                                                    }
+                                                } else if (link.key === 'values') {
+                                                    e.preventDefault();
+                                                    setActiveSection('values');
+                                                    const valuesSection = document.getElementById('values');
+                                                    if (valuesSection) {
+                                                        valuesSection.scrollIntoView({ behavior: 'smooth' });
+                                                    } else {
+                                                        router.push('/?target=values');
                                                     }
                                                 } else if (link.key === 'services') {
                                                     e.preventDefault();
@@ -170,11 +195,11 @@ export default function Header() {
                         </ul>
 
                         <div className={`d-flex align-items-center gap-3 ${styles.actionsContainer}`}>
-                            <LanguageSwitcher />
                             <Link href="/appointment" className={`${styles.appointmentBtn} fw-bold shadow-sm`}>
                                 <Plus size={18} strokeWidth={3} />
                                 {t('appointment')}
                             </Link>
+                            <LanguageSwitcher />
                         </div>
                     </div>
                 </div>
@@ -216,6 +241,13 @@ export default function Header() {
                                                             aboutSection.scrollIntoView({ behavior: 'smooth' });
                                                         } else {
                                                             router.push('/?target=about');
+                                                        }
+                                                    } else if (link.key === 'values') {
+                                                        const valuesSection = document.getElementById('values');
+                                                        if (valuesSection) {
+                                                            valuesSection.scrollIntoView({ behavior: 'smooth' });
+                                                        } else {
+                                                            router.push('/?target=values');
                                                         }
                                                     } else {
                                                         router.push(link.href as any);

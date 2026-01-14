@@ -94,10 +94,51 @@
 .logoLink {
     text-decoration: none;
     margin-inline-end: 0 !important;
+    flex-shrink: 0;
 
     :global([dir="rtl"]) & {
         margin: 0 !important;
     }
+}
+
+// Desktop navigation layout - 3 parts
+.desktopNav {
+    :global(.container) {
+
+        // Mobile: reset to default
+        @media (max-width: 991.98px) {
+            margin-inline: auto !important;
+            max-width: 100% !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        :global(.container) {
+            display: flex !important;
+            align-items: center;
+            justify-content: space-between;
+            margin-inline: 50px !important;
+            max-width: calc(100% - 100px) !important;
+        }
+    }
+}
+
+.navbarCollapse {
+    @media (min-width: 992px) {
+        display: flex !important;
+        justify-content: center !important;
+    }
+}
+
+.navCenter {
+    @media (min-width: 992px) {
+        margin: 0 auto;
+    }
+}
+
+.actionsContainer {
+    margin-inline-start: 0 !important;
+    flex-shrink: 0;
 }
 
 .logo {
