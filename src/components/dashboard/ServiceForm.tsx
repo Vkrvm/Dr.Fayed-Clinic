@@ -17,6 +17,8 @@ interface ServiceFormProps {
         imageUrl_ar: string;
         icon: string;
     };
+    isEditing?: boolean;
+    serviceId?: string;
 }
 
 const iconOptions = [
