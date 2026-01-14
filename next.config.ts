@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  compress: true,
+  poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion', '@fortawesome/react-fontawesome'],
+  },
 };
 
 export default withNextIntl(nextConfig);
