@@ -6,30 +6,30 @@
 
 // 2. Bootstrap
 // 2. Bootstrap (Modular Imports for smaller size)
-@use "../../node_modules/bootstrap/scss/functions";
-@use "../../node_modules/bootstrap/scss/variables" as bs-variables;
-@use "../../node_modules/bootstrap/scss/maps";
-@use "../../node_modules/bootstrap/scss/mixins";
-@use "../../node_modules/bootstrap/scss/utilities";
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables"; // Removed 'as bs-variables' as @import doesn't support namespaces
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/utilities";
 
 // Core
-@use "../../node_modules/bootstrap/scss/root";
-@use "../../node_modules/bootstrap/scss/reboot";
-@use "../../node_modules/bootstrap/scss/type";
-@use "../../node_modules/bootstrap/scss/images";
-@use "../../node_modules/bootstrap/scss/containers";
-@use "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/root";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/type";
+@import "../../node_modules/bootstrap/scss/images";
+@import "../../node_modules/bootstrap/scss/containers";
+@import "../../node_modules/bootstrap/scss/grid";
 
 // Components
-@use "../../node_modules/bootstrap/scss/buttons";
-@use "../../node_modules/bootstrap/scss/transitions";
-@use "../../node_modules/bootstrap/scss/nav";
-@use "../../node_modules/bootstrap/scss/navbar";
-@use "../../node_modules/bootstrap/scss/card";
-@use "../../node_modules/bootstrap/scss/close";
-@use "../../node_modules/bootstrap/scss/forms";
-@use "../../node_modules/bootstrap/scss/helpers";
-@use "../../node_modules/bootstrap/scss/utilities/api";
+@import "../../node_modules/bootstrap/scss/buttons";
+@import "../../node_modules/bootstrap/scss/transitions";
+@import "../../node_modules/bootstrap/scss/nav";
+@import "../../node_modules/bootstrap/scss/navbar";
+@import "../../node_modules/bootstrap/scss/card";
+@import "../../node_modules/bootstrap/scss/close";
+@import "../../node_modules/bootstrap/scss/forms";
+@import "../../node_modules/bootstrap/scss/helpers";
+@import "../../node_modules/bootstrap/scss/utilities/api";
 
 // 3. Global Styles
 // 3. Global Styles
