@@ -1,0 +1,25 @@
+@use '../../styles/variables' as *;
+
+.scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1040; // Above most content, below modals/mobile menu if necessary
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $color-accent;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        background-color: color-mix(in srgb, $color-accent, black 15%);
+        transform: translateY(-5px);
+    }
+}

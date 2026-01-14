@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { signOut } from 'next-auth/react';
-import { LayoutDashboard, Briefcase, LogOut, User, Users, Settings } from 'lucide-react';
+import { LayoutDashboard, Briefcase, LogOut, User, Users, Settings, Calendar } from 'lucide-react';
 import styles from './DashboardNav.module.scss';
 
 interface DashboardNavProps {
@@ -18,6 +18,7 @@ export default function DashboardNav({ user }: DashboardNavProps) {
 
     const navItems = [
         { href: '/en/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+        { href: '/en/dashboard/appointments', label: 'Appointments', icon: Calendar },
         { href: '/en/dashboard/services', label: 'Services', icon: Briefcase },
         { href: '/en/dashboard/users', label: 'Users', icon: Users },
         { href: '/en/dashboard/settings', label: 'Settings', icon: Settings },

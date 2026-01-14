@@ -1,0 +1,90 @@
+@use '../../styles/variables' as *;
+
+.submitBtn {
+    background-color: $color-accent !important;
+    border-color: $color-accent !important;
+    color: white !important;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+
+    &:hover,
+    &:focus {
+        background-color: color-mix(in srgb, $color-accent, black 15%) !important;
+        border-color: color-mix(in srgb, $color-accent, black 15%) !important;
+        transform: translateY(-2px);
+    }
+}
+
+// React Phone Input 2 Customization
+:global(.react-tel-input) {
+    width: 100% !important; // Ensure the main container is full width
+    font-family: var(--bs-body-font-family); // Inherit font
+
+    .form-control {
+        width: 100% !important;
+        background-color: #f8f9fa !important;
+        border: none !important;
+        height: 48px !important;
+
+        // Match Bootstrap lg padding logic
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+        padding-left: 58px !important; // space for flag (adjusted)
+        padding-right: 1rem !important;
+
+        border-radius: var(--bs-border-radius-lg) !important;
+        font-size: 1.25rem !important; // lg font size
+        line-height: 1.5 !important;
+        color: #212529 !important;
+
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+        &:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+            background-color: #fff !important;
+        }
+
+        &::placeholder {
+            color: #6c757d;
+            opacity: 1;
+        }
+    }
+
+    .flag-dropdown {
+        background-color: transparent !important;
+        border: none !important;
+        border-radius: var(--bs-border-radius-lg) 0 0 var(--bs-border-radius-lg) !important;
+
+        &.open {
+            background-color: transparent !important;
+        }
+
+        .selected-flag {
+            background-color: transparent !important;
+            padding-left: 14px !important;
+            width: 48px !important; // Match padding-left of input
+
+            &:hover,
+            &:focus {
+                background-color: rgba(0, 0, 0, 0.05) !important;
+            }
+        }
+    }
+
+    .country-list {
+        background-color: #fff;
+        border: none;
+        border-radius: var(--bs-border-radius-lg);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+        margin-top: 8px;
+        text-align: left;
+        width: 100%;
+        max-height: 250px;
+
+        .search {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    }
+}

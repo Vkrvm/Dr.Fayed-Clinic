@@ -14,13 +14,19 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
     const router = useRouter();
 
-    const handleAboutClick = (e: React.MouseEvent) => {
+    const handleSectionClick = (e: React.MouseEvent, id: string) => {
         e.preventDefault();
-        const aboutSection = document.getElementById('about');
-        if (aboutSection) {
-            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        // If we are on the homepage, scroll smooth
+        // If not, navigate to homepage with hash
+        const isHomePage = window.location.pathname === '/en' || window.location.pathname === '/ar' || window.location.pathname === '/';
+
+        if (isHomePage) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
         } else {
-            router.push('/?target=about');
+            router.push(`/?target=${id}`);
         }
     };
 
@@ -58,10 +64,12 @@ export default function Footer() {
                     <div className="col-lg-2 col-md-6">
                         <h5 className={styles.heading}>{t('quickLinks')}</h5>
                         <ul className={styles.linkList}>
-                            <li><Link href="/" className={styles.linkItem}>{tNav('home')}</Link></li>
-                            <li><Link href="/#about" className={styles.linkItem} onClick={handleAboutClick}>{tNav('about')}</Link></li>
-                            <li><Link href="/appointment" className={styles.linkItem}>{tNav('appointment')}</Link></li>
-                            <li><Link href="/services" className={styles.linkItem}>{tNav('services')}</Link></li>
+                            <li><a href="/#about" className={styles.linkItem} onClick={(e) => handleSectionClick(e, 'about')}>{tNav('about')}</a></li>
+                            <li><a href="/#services" className={styles.linkItem} onClick={(e) => handleSectionClick(e, 'services')}>{tNav('services')}</a></li>
+                            <li><a href="/#values" className={styles.linkItem} onClick={(e) => handleSectionClick(e, 'values')}>{tNav('values')}</a></li>
+                            <li><a href="/#doctors" className={styles.linkItem} onClick={(e) => handleSectionClick(e, 'doctors')}>{tNav('doctors')}</a></li>
+                            <li><a href="/#faq" className={styles.linkItem} onClick={(e) => handleSectionClick(e, 'faq')}>{tNav('faq')}</a></li>
+                            <li><a href="/#tools" className={styles.linkItem} onClick={(e) => handleSectionClick(e, 'tools')}>{tNav('tools')}</a></li>
                         </ul>
                     </div>
 
@@ -74,15 +82,7 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-lg-3 col-md-6">
-                        <h5 className={styles.heading}>{t('services')}</h5>
-                        <ul className={styles.linkList}>
-                            <li className={styles.linkItem}><span className="me-1">•</span> {t('serviceList.chiropractic')}</li>
-                            <li className={styles.linkItem}><span className="me-1">•</span> {t('serviceList.physiotherapy')}</li>
-                            <li className={styles.linkItem}><span className="me-1">•</span> {t('serviceList.posture')}</li>
-                            <li className={styles.linkItem}><span className="me-1">•</span> {t('serviceList.massage')}</li>
-                        </ul>
-                    </div>
+
                 </div>
 
                 <hr className={styles.divider} />

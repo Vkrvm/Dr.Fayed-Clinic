@@ -11,9 +11,10 @@ export default function NavbarTop() {
     const t = useTranslations('TopBar');
     const pathname = usePathname();
     const isServicesPage = pathname.includes('/services');
+    const isAppointmentPage = pathname.includes('/appointment');
 
     return (
-        <div className={`${styles.navbarTop} ${isServicesPage ? styles.servicesPage : ''}`}>
+        <div className={`${styles.navbarTop} ${isServicesPage ? styles.servicesPage : ''} ${isAppointmentPage ? styles.appointmentPage : ''}`}>
             <div className={`container ${styles.content}`}>
                 <div className={styles.contactInfo}>
                     <Phone size={16} />

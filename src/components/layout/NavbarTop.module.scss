@@ -16,7 +16,8 @@
         display: none;
     }
 
-    &.servicesPage {
+    &.servicesPage,
+    &.appointmentPage {
         background-color: #f2f2f2 !important;
         border-bottom-color: rgba(0, 0, 0, 0.1);
 
@@ -42,6 +43,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-inline: 50px;
+    max-width: calc(100% - 100px) !important;
 }
 
 .contactInfo {

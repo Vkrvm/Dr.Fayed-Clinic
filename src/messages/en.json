@@ -21,10 +21,13 @@
         "home": "Home",
         "about": "About",
         "values": "Our Values",
+        "doctors": "Our Doctors",
+        "faq": "FAQ",
         "services": "Services",
         "pages": "Pages",
         "contact": "Contact",
-        "appointment": "Make an Appointment"
+        "appointment": "Make an Appointment",
+        "tools": "Our Tools"
     },
     "TopBar": {
         "callUs": "Call Us"
@@ -90,6 +93,86 @@
             "personalizedTreatment": {
                 "title": "Personalized Treatment",
                 "description": "Every patient receives a tailored treatment approach designed to achieve the best possible outcomes."
+            }
+        }
+    },
+    "OurDoctors": {
+        "label": "OUR DOCTORS",
+        "heading": "Dedicated to Your Recovery",
+        "description": "Each of our team member brings specialized expertise and a patient-centered approach to ensure you receive the highest level of care.",
+        "doctors": {
+            "fayed": {
+                "name": "Dr. Ahmed Fayed",
+                "role": "Physiotherapist"
+            },
+            "anas": {
+                "name": "Dr. Anas El Serety",
+                "role": "Physiotherapist"
+            }
+        }
+    },
+    "FAQ": {
+        "label": "FAQs",
+        "heading": "General Information",
+        "items": {
+            "q1": {
+                "question": "Do I need a referral from a doctor before starting physiotherapy sessions?",
+                "answer": "No, a medical referral is not required in most cases. We can assess your condition during the first session and create a personalized treatment plan. Additional tests may be requested if needed."
+            },
+            "q2": {
+                "question": "How many sessions do I need?",
+                "answer": "The number of sessions varies depending on your condition and how your body responds to treatment. After the initial assessment, our specialist will recommend an appropriate treatment plan."
+            },
+            "q3": {
+                "question": "Are physiotherapy sessions painful?",
+                "answer": "Physiotherapy sessions are generally not painful. You may feel mild discomfort at the beginning, which is normal and usually decreases as your condition improves."
+            },
+            "q4": {
+                "question": "How long does one session take?",
+                "answer": "Each session typically lasts between 30 to 60 minutes, depending on the treatment type and the patient’s condition."
+            },
+            "q5": {
+                "question": "Do you provide personalized treatment plans for each case?",
+                "answer": "Yes, we create personalized treatment plans tailored to each patient’s condition, needs, and recovery goals."
+            },
+            "q6": {
+                "question": "How can I book an appointment?",
+                "answer": "You can easily book an appointment through the “Make an Appointment” page or by contacting us directly via phone or WhatsApp."
+            }
+        }
+    },
+    "OurTools": {
+        "label": "Our Tools",
+        "heading": "State of the Art Tools"
+    },
+    "AppointmentPage": {
+        "title": "Make an Appointment - Fayed Clinic",
+        "description": "Request an appointment with our specialists today.",
+        "heading": "Make an Appointment",
+        "subheading": "Fill out the form below and we will contact you to confirm your appointment."
+    },
+    "AppointmentForm": {
+        "successHeading": "Request Received!",
+        "successMessage": "Thank you for contacting us. We will get back to you shortly to confirm your appointment.",
+        "submitButton": "Request Appointment",
+        "optional": "Optional",
+        "fields": {
+            "name": {
+                "label": "Full Name",
+                "placeholder": "Enter your full name"
+            },
+            "phone": {
+                "label": "Phone Number",
+                "placeholder": "Enter your phone number"
+            },
+            "service": {
+                "label": "Service Type",
+                "placeholder": "Select a service",
+                "other": "Other Inquiry"
+            },
+            "notes": {
+                "label": "Notes",
+                "placeholder": "Any additional information..."
             }
         }
     }

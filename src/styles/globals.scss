@@ -29,3 +29,66 @@ h6,
 .h6 {
     font-family: var(--font-outfit), sans-serif;
 }
+
+/* React Phone Input 2 Overrides */
+.react-tel-input {
+    width: 100% !important;
+    font-family: var(--bs-body-font-family);
+}
+
+.react-tel-input .form-control {
+    width: 100% !important;
+    background-color: #f8f9fa !important;
+    border: none !important;
+    height: 48px !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    padding-left: 58px !important;
+    /* space for flag */
+    padding-right: 1rem !important;
+    border-radius: var(--bs-border-radius-lg) !important;
+    font-size: 1.25rem !important;
+    line-height: 1.5 !important;
+    color: #212529 !important;
+    box-shadow: none !important;
+    /* Reset default shadows if any */
+}
+
+.react-tel-input .form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+    background-color: #fff !important;
+}
+
+.react-tel-input .flag-dropdown {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: var(--bs-border-radius-lg) 0 0 var(--bs-border-radius-lg) !important;
+}
+
+.react-tel-input .flag-dropdown.open {
+    background-color: transparent !important;
+}
+
+.react-tel-input .selected-flag {
+    background-color: transparent !important;
+    padding-left: 14px !important;
+    width: 48px !important;
+}
+
+.react-tel-input .selected-flag:hover,
+.react-tel-input .selected-flag:focus {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.react-tel-input .country-list {
+    background-color: #fff !important;
+    border: none !important;
+    border-radius: var(--bs-border-radius-lg) !important;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+    margin-top: 8px !important;
+    width: 300px !important;
+    /* Fixed width to prevent squashing */
+    max-width: 90vw !important;
+    /* Responsive fallback */
+    z-index: 1050 !important;
+}

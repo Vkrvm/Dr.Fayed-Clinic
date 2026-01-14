@@ -33,6 +33,7 @@ import Footer from "@/components/layout/Footer";
 import AuthProvider from "@/components/auth/AuthProvider";
 import { ServicesProvider } from "@/context/ServicesContext";
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
+import BootstrapJS from "@/components/utils/BootstrapJS";
 
 export default async function LocaleLayout({
   children,
@@ -58,6 +59,7 @@ export default async function LocaleLayout({
         <AuthProvider>
           <ServicesProvider>
             <NextIntlClientProvider messages={messages}>
+              <BootstrapJS />
               <ConditionalLayout locale={locale}>
                 {children}
               </ConditionalLayout>

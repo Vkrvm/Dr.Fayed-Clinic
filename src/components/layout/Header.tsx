@@ -17,13 +17,15 @@ export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const isServicesPage = pathname.includes('/services');
+    const isAppointmentPage = pathname.includes('/appointment');
 
     const navLinks = [
-        { key: 'home', href: '/' },
         { key: 'about', href: '/#about' },
         { key: 'services', href: '/services' },
         { key: 'values', href: '/#values' },
-        { key: 'contact', href: '/contact' },
+        { key: 'doctors', href: '/#doctors' },
+        { key: 'faq', href: '/#faq' },
+        { key: 'tools', href: '/#tools' },
     ];
 
     useEffect(() => {
@@ -35,14 +37,26 @@ export default function Header() {
             const aboutSection = document.getElementById('about');
             const valuesSection = document.getElementById('values');
             const servicesSection = document.getElementById('services');
+            const doctorsSection = document.getElementById('doctors');
+            const faqSection = document.getElementById('faq');
+            const toolsSection = document.getElementById('tools');
 
-            if (servicesSection && valuesSection && aboutSection) {
+            if (servicesSection && valuesSection && aboutSection && doctorsSection && faqSection && toolsSection) {
                 const servicesOffset = servicesSection.offsetTop - 150;
                 const valuesOffset = valuesSection.offsetTop - 150;
                 const aboutOffset = aboutSection.offsetTop - 150;
+                const doctorsOffset = doctorsSection.offsetTop - 150;
+                const faqOffset = faqSection.offsetTop - 150;
+                const toolsOffset = toolsSection.offsetTop - 150;
 
-                // Check in reverse order (bottom to top) since values comes after services
-                if (scrollPosition >= valuesOffset) {
+                // Check in reverse order (bottom to top)
+                if (scrollPosition >= toolsOffset) {
+                    setActiveSection('tools');
+                } else if (scrollPosition >= faqOffset) {
+                    setActiveSection('faq');
+                } else if (scrollPosition >= doctorsOffset) {
+                    setActiveSection('doctors');
+                } else if (scrollPosition >= valuesOffset) {
                     setActiveSection('values');
                 } else if (scrollPosition >= servicesOffset) {
                     setActiveSection('services');
@@ -52,18 +66,12 @@ export default function Header() {
                     setActiveSection('home');
                 }
             } else if (valuesSection && aboutSection) {
+                // Fallback if doctors section is not yet rendered
                 const valuesOffset = valuesSection.offsetTop - 150;
                 const aboutOffset = aboutSection.offsetTop - 150;
                 if (scrollPosition >= valuesOffset) {
                     setActiveSection('values');
                 } else if (scrollPosition >= aboutOffset) {
-                    setActiveSection('about');
-                } else {
-                    setActiveSection('home');
-                }
-            } else if (aboutSection) {
-                const aboutOffset = aboutSection.offsetTop - 150;
-                if (scrollPosition >= aboutOffset) {
                     setActiveSection('about');
                 } else {
                     setActiveSection('home');
@@ -80,7 +88,7 @@ export default function Header() {
 
     return (
         <header
-            className={`${styles.header} ${isScrolled ? styles.scrolled : styles.transparent} ${isOpen ? styles.open : ''} ${isServicesPage ? styles.servicesPage : ''}`}
+            className={`${styles.header} ${isScrolled ? styles.scrolled : styles.transparent} ${isOpen ? styles.open : ''} ${isServicesPage ? styles.servicesPage : ''} ${isAppointmentPage ? styles.appointmentPage : ''}`}
         >
             <nav className={`navbar navbar-expand-lg navbar-light py-3 ${styles.desktopNav}`}>
                 <div className="container">
@@ -148,17 +156,10 @@ export default function Header() {
                                 return (
                                     <li className="nav-item" key={link.key}>
                                         <Link
-                                            href={link.key === 'about' || link.key === 'services' || link.key === 'values' ? '/#' : (link.href as any)}
+                                            href={link.key === 'about' || link.key === 'services' || link.key === 'values' || link.key === 'doctors' || link.key === 'faq' || link.key === 'tools' ? '/#' : (link.href as any)}
                                             className={`nav-link ${styles.navLink} ${isActive ? styles.activeLink : ''}`}
                                             onClick={(e) => {
-                                                if (link.key === 'home') {
-                                                    e.preventDefault();
-                                                    if (pathname === '/') {
-                                                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                                                    } else {
-                                                        router.push('/');
-                                                    }
-                                                } else if (link.key === 'about') {
+                                                if (link.key === 'about') {
                                                     e.preventDefault();
                                                     const aboutSection = document.getElementById('about');
                                                     if (aboutSection) {
@@ -174,6 +175,33 @@ export default function Header() {
                                                         valuesSection.scrollIntoView({ behavior: 'smooth' });
                                                     } else {
                                                         router.push('/?target=values');
+                                                    }
+                                                } else if (link.key === 'doctors') {
+                                                    e.preventDefault();
+                                                    setActiveSection('doctors');
+                                                    const doctorsSection = document.getElementById('doctors');
+                                                    if (doctorsSection) {
+                                                        doctorsSection.scrollIntoView({ behavior: 'smooth' });
+                                                    } else {
+                                                        router.push('/?target=doctors');
+                                                    }
+                                                } else if (link.key === 'faq') {
+                                                    e.preventDefault();
+                                                    setActiveSection('faq');
+                                                    const faqSection = document.getElementById('faq');
+                                                    if (faqSection) {
+                                                        faqSection.scrollIntoView({ behavior: 'smooth' });
+                                                    } else {
+                                                        router.push('/?target=faq');
+                                                    }
+                                                } else if (link.key === 'tools') {
+                                                    e.preventDefault();
+                                                    setActiveSection('tools');
+                                                    const toolsSection = document.getElementById('tools');
+                                                    if (toolsSection) {
+                                                        toolsSection.scrollIntoView({ behavior: 'smooth' });
+                                                    } else {
+                                                        router.push('/?target=tools');
                                                     }
                                                 } else if (link.key === 'services') {
                                                     e.preventDefault();
@@ -229,13 +257,7 @@ export default function Header() {
                                                 setIsOpen(false);
 
                                                 setTimeout(() => {
-                                                    if (link.key === 'home') {
-                                                        if (pathname === '/') {
-                                                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                                                        } else {
-                                                            router.push('/');
-                                                        }
-                                                    } else if (link.key === 'about') {
+                                                    if (link.key === 'about') {
                                                         const aboutSection = document.getElementById('about');
                                                         if (aboutSection) {
                                                             aboutSection.scrollIntoView({ behavior: 'smooth' });

@@ -40,3 +40,13 @@ model SiteSettings {
   heroImage_ar  String   @default("/images/hero-1-v2.webp")
   updatedAt     DateTime @updatedAt
 }
+
+model AppointmentRequest {
+  id          String   @id @default(uuid())
+  name        String
+  phone       String
+  serviceType String
+  notes       String?
+  status      String   @default("pending") // pending, contacted, completed, cancelled
+  createdAt   DateTime @default(now())
+}

@@ -1,0 +1,123 @@
+@use '../../styles/variables' as *;
+
+.section {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    background-color: #f3f5f7;
+    scroll-margin-top: 100px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    @media (min-width: 992px) {
+        flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+    }
+}
+
+// Left Content (Text)
+.content {
+    flex: 1;
+    max-width: 100%;
+
+    @media (min-width: 992px) {
+        max-width: 400px;
+    }
+}
+
+.label {
+    display: block;
+    color: $color-accent;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.heading {
+    color: $color-primary;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+
+    @media (min-width: 768px) {
+        font-size: 3rem;
+    }
+}
+
+.description {
+    color: lighten($color-text, 10%);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+// Right Content (Cards)
+.cardsContainer {
+    flex: 1.5;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    background-color: #eee;
+
+    img {
+        object-fit: cover;
+        object-position: top;
+        transition: transform 0.5s ease;
+    }
+
+    &:hover img {
+        transform: scale(1.05);
+    }
+}
+
+.info {
+    padding: 1.5rem;
+}
+
+.name {
+    color: $color-primary;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.role {
+    color: $color-accent;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0;
+}
