@@ -25,6 +25,9 @@ const outfit = Outfit({
 export const metadata = {
   title: "Haraka Physical Therapy Center",
   description: "Haraka Physical Therapy Center offers personalized rehabilitation, pain relief, and chiropractic care. Our expert team is dedicated to restoring your movement and enhancing your physical well-being.",
+  verification: {
+    google: "VVVnz7-tP24734rIIKhHg_ddtNLj3U3SrSjqDjG1jTI",
+  },
 };
 
 import GlobalTransition from "@/components/layout/GlobalTransition";
