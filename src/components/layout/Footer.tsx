@@ -70,6 +70,7 @@ export default function Footer() {
                             <li><a href="/#doctors" className={styles.linkItem} onClick={(e) => handleSectionClick(e, 'doctors')}>{tNav('doctors')}</a></li>
                             <li><a href="/#faq" className={styles.linkItem} onClick={(e) => handleSectionClick(e, 'faq')}>{tNav('faq')}</a></li>
                             <li><a href="/#tools" className={styles.linkItem} onClick={(e) => handleSectionClick(e, 'tools')}>{tNav('tools')}</a></li>
+                            <li><Link href="/appointment" className={styles.linkItem}>{tNav('appointment')}</Link></li>
                         </ul>
                     </div>
 
