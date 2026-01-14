@@ -71,25 +71,25 @@
         "pageHeading": "Comprehensive Care For Your Body"
     },
     "OurValues": {
-        "label": "OUR VALUE",
+        "label": "OUR VALUES",
         "heading": "Our Core Values: Guiding Principles of Quality Care",
         "imageAlt": "Physical therapy session",
         "values": {
+            "patientCenteredCare": {
+                "title": "Patient-Centered Care",
+                "description": "We place each patient's needs, goals, and comfort at the heart of every treatment plan."
+            },
+            "professionalExcellence": {
+                "title": "Professional Excellence",
+                "description": "Our team is committed to the highest standards of clinical expertise, continuous learning, and best practices."
+            },
+            "integrityTrust": {
+                "title": "Integrity & Trust",
+                "description": "We build lasting relationships through honesty, transparency, and ethical care."
+            },
             "personalizedTreatment": {
-                "title": "Personalized Treatment Plans",
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-            },
-            "experiencedProfessionals": {
-                "title": "Experienced Professionals",
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-            },
-            "comprehensiveServices": {
-                "title": "Comprehensive Services",
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-            },
-            "holisticApproach": {
-                "title": "Holistic Approach to Healing",
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+                "title": "Personalized Treatment",
+                "description": "Every patient receives a tailored treatment approach designed to achieve the best possible outcomes."
             }
         }
     }

@@ -5,10 +5,10 @@ import { motion } from 'framer-motion';
 import styles from './OurValues.module.scss';
 
 const values = [
-    { number: '01', key: 'personalizedTreatment' },
-    { number: '02', key: 'experiencedProfessionals' },
-    { number: '03', key: 'comprehensiveServices' },
-    { number: '04', key: 'holisticApproach' },
+    { number: '01', key: 'patientCenteredCare' },
+    { number: '02', key: 'professionalExcellence' },
+    { number: '03', key: 'integrityTrust' },
+    { number: '04', key: 'personalizedTreatment' },
 ];
 
 export default function OurValues() {
