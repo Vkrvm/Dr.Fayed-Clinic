@@ -7,7 +7,15 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig: NextConfig = {
   sassOptions: {
     includePaths: [path.join(process.cwd(), 'src/styles'), path.join(process.cwd(), 'node_modules')],
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.supabase.co',
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);
