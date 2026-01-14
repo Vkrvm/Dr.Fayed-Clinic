@@ -27,10 +27,10 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
     return <motion.span ref={ref}>{display}</motion.span>;
 }
 
-export default function Hero() {
+export default function Hero({ initialHeroImage }: { initialHeroImage: string }) {
     const t = useTranslations('Hero');
     const locale = useLocale();
-    const [heroImage, setHeroImage] = useState('/images/hero-1-v2.webp');
+    const [heroImage, setHeroImage] = useState(initialHeroImage);
 
     useEffect(() => {
         const loadSettings = async () => {
@@ -122,7 +122,7 @@ export default function Hero() {
                             <Clock size={24} />
                         </div>
                         <div>
-                            <h4>{t('openingHours')}</h4>
+                            <p className="h4 mb-2">{t('openingHours')}</p>
                             <p>{t('openingHoursDetails')}</p>
                         </div>
                     </div>
@@ -132,7 +132,7 @@ export default function Hero() {
                             <MapPin size={24} />
                         </div>
                         <div>
-                            <h4>{t('ourLocation')}</h4>
+                            <p className="h4 mb-2">{t('ourLocation')}</p>
                             <p>{t('ourLocationValue')}</p>
                         </div>
                     </div>

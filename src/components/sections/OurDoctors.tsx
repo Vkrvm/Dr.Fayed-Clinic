@@ -51,7 +51,7 @@ export default function OurDoctors() {
                                     src={doctor.image}
                                     alt={t(`doctors.${doctor.key}.name`)}
                                     fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                 />
                             </div>
                             <div className={styles.info}>

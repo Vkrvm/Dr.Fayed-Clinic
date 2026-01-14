@@ -31,6 +31,7 @@ export default function About() {
                             <video
                                 controls
                                 playsInline
+                                preload="none"
                                 poster="/images/video-thumb-v2.webp" // Fallback
                             >
                                 <source src="/videos/aboutus-vid.mp4" type="video/mp4" />
@@ -59,13 +60,13 @@ export default function About() {
                                 <div className="row gy-4">
                                     <div className="col-md-6">
                                         <div className={styles.missionItem}>
-                                            <h5>{t('missionTitle')}</h5>
+                                            <h3>{t('missionTitle')}</h3>
                                             <p>{t('missionText')}</p>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className={styles.missionItem}>
-                                            <h5>{t('visionTitle')}</h5>
+                                            <h3>{t('visionTitle')}</h3>
                                             <p>{t('visionText')}</p>
                                         </div>
                                     </div>

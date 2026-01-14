@@ -96,10 +96,11 @@ export default function Header() {
                         <Image
                             src="/images/fayed-logo_bg_removed.png.png"
                             alt="Fayed Clinic Logo"
-                            width={0}
-                            height={0}
-                            sizes="100vw"
+                            width={188}
+                            height={70}
+                            sizes="(max-width: 992px) 150px, 188px"
                             className={styles.logo}
+                            style={{ width: 'auto', height: 'auto', maxHeight: '70px' }}
                         />
                     </Link>
 

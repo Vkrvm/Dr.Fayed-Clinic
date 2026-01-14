@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import styles from './OurValues.module.scss';
 
 const values = [
@@ -55,9 +56,13 @@ export default function OurValues() {
                         <span className={styles.label}>{t('label')}</span>
                         <h2 className={styles.heading}>{t('heading')}</h2>
                         <div className={styles.imageContainer}>
-                            <img
+                            <Image
                                 src="/images/our-values-img.jpg"
                                 alt={t('imageAlt')}
+                                width={534}
+                                height={356}
+                                sizes="(max-width: 992px) 100vw, 534px"
+                                style={{ width: '100%', height: 'auto', maxHeight: '350px', objectFit: 'cover' }}
                             />
                         </div>
                     </motion.div>

@@ -62,7 +62,7 @@ export default function Footer() {
                     </div>
 
                     <div className="col-lg-2 col-md-6">
-                        <h5 className={styles.heading}>{t('quickLinks')}</h5>
+                        <h3 className={styles.heading}>{t('quickLinks')}</h3>
                         <ul className={styles.linkList}>
                             <li><a href="/#about" className={styles.linkItem} onClick={(e) => handleSectionClick(e, 'about')}>{tNav('about')}</a></li>
                             <li><a href="/#services" className={styles.linkItem} onClick={(e) => handleSectionClick(e, 'services')}>{tNav('services')}</a></li>
@@ -75,7 +75,7 @@ export default function Footer() {
                     </div>
 
                     <div className="col-lg-2 col-md-6">
-                        <h5 className={styles.heading}>{t('socials')}</h5>
+                        <h3 className={styles.heading}>{t('socials')}</h3>
                         <ul className={styles.linkList}>
                             <li><a href="https://www.facebook.com/profile.php?id=61583335516641" target="_blank" rel="noopener noreferrer" className={styles.linkItem}><Facebook size={16} /> {t('socialNetworks.facebook')}</a></li>
                             <li><a href="https://wa.me/201026170990" target="_blank" rel="noopener noreferrer" className={styles.linkItem}><FontAwesomeIcon icon={faWhatsapp} style={{ width: 16, height: 16 }} /> {t('socialNetworks.whatsapp')}</a></li>

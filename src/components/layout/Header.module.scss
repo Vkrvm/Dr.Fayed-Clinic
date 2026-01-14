@@ -202,7 +202,7 @@
 }
 
 .appointmentBtn {
-    background-color: $color-accent;
+    background-color: color-mix(in srgb, $color-accent, black 30%);
     border-radius: 10px;
     padding-block: 17px;
     padding-inline: 30px;
