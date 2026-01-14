@@ -23,8 +23,8 @@ const outfit = Outfit({
 });
 
 export const metadata = {
-  title: "Fayed Clinic",
-  description: "Medical Center Portfolio",
+  title: "Haraka Physical Therapy Center",
+  description: "Haraka Physical Therapy Center offers personalized rehabilitation, pain relief, and chiropractic care. Our expert team is dedicated to restoring your movement and enhancing your physical well-being.",
 };
 
 import GlobalTransition from "@/components/layout/GlobalTransition";
