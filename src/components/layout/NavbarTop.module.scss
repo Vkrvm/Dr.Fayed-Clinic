@@ -45,6 +45,11 @@
     align-items: center;
     margin-inline: 50px;
     max-width: calc(100% - 100px) !important;
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        max-width: 720px !important;
+        margin-inline: auto !important;
+    }
 }
 
 .contactInfo {
