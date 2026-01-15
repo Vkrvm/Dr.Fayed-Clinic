@@ -7,10 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     const routes = [
         '',
-        '/about',
         '/services',
         '/appointment',
-        '/contact',
     ];
 
     const locales = ['en', 'ar'];
